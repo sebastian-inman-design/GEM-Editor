@@ -1,0 +1,42 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+body {
+  color: #9DA4B2;
+  padding: 0;
+  margin: 0;
+}
+
+input,
+textarea {
+  font-family: "Poppins", sans-serif;
+  color: #9DA4B2;
+}
+
+#app {
+  background-color: #FFFFFF;
+  overflow: hidden;
+  position: fixed;
+  padding: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+
+.control-module {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.12);
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  overflow: hidden;
+  position: fixed;
+  z-index: 100;
+}

@@ -1,0 +1,16 @@
+.app-titlebar {
+  display: flex;
+  height: 56px;
+  left: 8px;
+  top: 8px;
+  input {
+    letter-spacing: 0.365px;
+    min-width: 256px;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 0 16px;
+    margin: 16px 0;
+    outline: none;
+    border: 0;
+  }
+}
