@@ -1,4 +1,4 @@
-# test-vue-project
+# 🍑 Peachy Game Editor
 
 ## Project setup
 ```
