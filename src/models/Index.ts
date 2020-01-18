@@ -1,3 +1,5 @@
+import Storage from "../localStorage"
+
 export default class IndexModel {
 
   // Project Info.
@@ -5,7 +7,7 @@ export default class IndexModel {
 
     Title: "💎 Shades of Dusk & Dawn",
     Filename: "",
-    DateCreated: undefined,
+    DateCreated: new Date().toLocaleString(),
     DateModified: undefined
 
   }
@@ -34,6 +36,27 @@ export default class IndexModel {
     Assets:  [],
     Layers:  [],
     Objects: []
+
+  }
+
+  constructor() {
+
+    const self: any = this
+
+    Object.keys(self).map(Key => {
+
+      if(!Storage.Exists(Key)) {
+
+        Storage.Create(Key, self[Key])
+
+      }else{
+
+        const Data: any = Storage.Read(Key)
+        self[Key] = JSON.parse(Data)
+
+      }
+
+    })
 
   }
 

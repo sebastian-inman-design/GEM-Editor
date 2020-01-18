@@ -18,8 +18,6 @@
   import Index from "../models/Index"
   import Layer from "../models/Layer"
 
-  import IndexDB from "../indexdb"
-
   import SystemToolbar from "../system/Toolbar.vue"
   import SystemFrame from "../system/Frame.vue"
 
@@ -40,32 +38,6 @@
   })
 
   export default class Main extends Vue {
-
-    private Index: Index
-
-    constructor() {
-
-      super()
-
-      this.Index = new Index()
-      this.Index.Project.DateCreated = new Date().toLocaleString()
-
-      const db = new IndexDB("GEM")
-      db.Create(this.Index)
-
-      // Object.values([
-
-      //   new Layer({ Name: "Layer1" }),
-      //   new Layer({ Name: "Layer2" }),
-      //   new Layer({ Name: "Layer3" })
-        
-      // ]).map(layer => {
-
-      //   this.$store.dispatch('AddNewLayer', layer)
-
-      // })
-
-    }
 
     get SystemTheme(): String {
 

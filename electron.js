@@ -1,11 +1,11 @@
 const { app, BrowserWindow } = require('electron')
 
 const mainURL = process.env.NODE_ENV === 'dev'
-  ? `http://localhost:8080`
+  ? `http://localhost:8080/#/`
   : `file://${__dirname}/public/index.html`
 
 const settingsURL = process.env.NODE_ENV === 'dev'
-  ? `http://localhost:8080`
+  ? `http://localhost:8080/#/settings`
   : `file://${__dirname}/public/settings.html`
 
 app.on('ready', () => {

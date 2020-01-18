@@ -49,6 +49,18 @@ export default class Sidebar extends Vue {
     private maxWidth: Number = 520
     private Resizing: Boolean = false
 
+    constructor() {
+
+        super()
+
+        // Get the current sidebar width.
+        let width: any = this.SidebarWidth
+
+        // Set the default width.
+        this.UpdateSidebarWidth(width)
+
+    }
+
     get SidebarWidth(): Number {
 
         return this.$store.state.Index.Settings.SidebarWidth
