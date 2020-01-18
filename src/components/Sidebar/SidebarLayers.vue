@@ -1,6 +1,5 @@
 <template>
-    <div class="app-sidebar-panel">
-        <h4 class="sidebar-panel-title">Layers</h4>
+    <div>
         <div v-for="layer of Layers" :key="layer.Name" :layer="layer.Name">
             {{layer.Name}}
         </div>

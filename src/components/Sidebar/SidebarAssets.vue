@@ -1,7 +1,5 @@
 <template>
-    <div class="app-sidebar-panel">
-        <h4 class="sidebar-panel-title">Sprites</h4>
-    </div>
+    <div></div>
 </template>
 
 <script lang="ts">

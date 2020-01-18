@@ -1,21 +1,21 @@
 <template>
     <div class="app-toolbar control-module">
-      <button>
+      <button @click="SetActiveTool('grab')">
         <IconGrab/>
       </button>
-      <button aria-selected="true">
+      <button aria-selected="true" @click="SetActiveTool('cursor')">
         <IconCursor/>
       </button>
-      <button>
+      <button @click="SetActiveTool('brush')">
         <IconBrush/>
       </button>
-      <button>
+      <button @click="SetActiveTool('eraser')">
         <IconEraser/>
       </button>
-      <button>
+      <button @click="SetActiveTool('entities')">
         <IconShapes/>
       </button>
-      <button>
+      <button @click="SetActiveTool('logic')">
         <IconBolt/>
       </button>
     </div>
@@ -46,7 +46,13 @@ import IconBolt from "../Icons/Bolt.vue"
 })
 
 export default class Toolbar extends Vue {
-    /** Nothing here **/
+
+    SetActiveTool(tool: String) {
+
+      console.log(tool)
+
+    }
+
 }
 
 </script>
