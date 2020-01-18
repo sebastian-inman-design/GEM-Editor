@@ -6,13 +6,10 @@
 
 import { Component, Prop, Vue } from "vue-property-decorator"
 
-@Component({
-    components: {}
-})
-
+@Component
 export default class EditorLayer extends Vue {
 
-    /** Nothing here **/
+    /** Silence is peachy. **/
     
 }
 
@@ -28,5 +25,4 @@ export default class EditorLayer extends Vue {
     left: 0;
     top: 0;
 }
-
 </style>

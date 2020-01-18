@@ -1,58 +1,72 @@
 <template>
-    <div class="app-toolbar control-module">
-      <button @click="SetActiveTool('grab')">
-        <IconGrab/>
-      </button>
-      <button aria-selected="true" @click="SetActiveTool('cursor')">
-        <IconCursor/>
-      </button>
-      <button @click="SetActiveTool('brush')">
-        <IconBrush/>
-      </button>
-      <button @click="SetActiveTool('eraser')">
-        <IconEraser/>
-      </button>
-      <button @click="SetActiveTool('entities')">
-        <IconShapes/>
-      </button>
-      <button @click="SetActiveTool('logic')">
-        <IconBolt/>
-      </button>
-    </div>
+  <div class="app-toolbar">
+    <Tool tool="Selection" icon="mouse-pointer"/>
+    <Tool tool="Brush" icon="brush"/>
+    <Tool tool="Fill" icon="fill-drip"/>
+    <Tool tool="Collisions" icon="vector-square"/>
+    <Tool tool="Eraser" icon="eraser"/>
+    <Tool tool="Objects" icon="shapes"/>
+    <Tool tool="Lighting" icon="lightbulb"/>
+    <Tool tool="Logic" icon="bolt"/>
+  </div>
 </template>
 
 <script lang="ts">
 
 import { Component, Prop, Vue } from "vue-property-decorator"
+import store from "../../store"
 
-import "./Toolbar.scss"
-
-import IconGrab from "../Icons/Grab.vue"
-import IconCursor from "../Icons/Cursor.vue"
-import IconBrush from "../Icons/Brush.vue"
-import IconEraser from "../Icons/Eraser.vue"
-import IconShapes from "../Icons/Shapes.vue"
-import IconBolt from "../Icons/Bolt.vue"
+import Tool from "./Tool.vue"
 
 @Component({
     components: {
-      IconGrab,
-      IconCursor,
-      IconBrush,
-      IconEraser,
-      IconShapes,
-      IconBolt
+      Tool
     }
 })
 
 export default class Toolbar extends Vue {
 
-    SetActiveTool(tool: String) {
-
-      console.log(tool)
-
-    }
+    /** Silence is peachy. */
 
 }
 
 </script>
+
+<style lang="scss" scoped>
+.app-toolbar {
+  -webkit-app-region: no-drag;
+  padding-right: var(--editor-toolbar-padding);
+  padding-left: var(--editor-toolbar-padding);
+  flex-direction: column;
+  grid-area: toolbar;
+  display: flex;
+  button {
+    line-height: var(--editor-toolbar-button-size);
+    font-size: var(--editor-toolbar-icon-size);
+    height: var(--editor-toolbar-button-size);
+    width: var(--editor-toolbar-button-size);
+    background-color: transparent;
+    text-align: center;
+    border-radius: 4px;
+    color: #5C5C5C;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    &:not([aria-selected="true"]):hover {
+      color: #D6D6D6;
+      cursor: pointer;
+    }
+    &[aria-selected="true"] {
+      background-color: var(--system-background-color);
+      color: var(--system-accent-color);
+    }
+    svg {
+      max-height: var(--editor-toolbar-icon-size);
+      max-width: var(--editor-toolbar-icon-size);
+    }
+    + button {
+      margin-top: var(--editor-toolbar-padding);
+    }
+  }
+}
+</style>

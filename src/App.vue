@@ -1,9 +1,12 @@
 <template>
-  <div id="app">
-    <Titlebar />
-    <Toolbar />
-    <Editor  :layers="Project.Layers" :gridsize="Project.GridSize" />
-    <Sidebar :layers="Project.Layers" :assets="Project.Assets" />
+  <div id="app" :theme="SystemTheme">
+    <SystemToolbar/>
+    <SystemFrame>
+      <Actionbar/>
+      <Toolbar/>
+      <Editor/>
+      <Sidebar/>
+    </SystemFrame>
   </div>
 </template>
 
@@ -15,15 +18,21 @@
 
   import store from "./store"
   import Project from "./models/Project"
+  import Layer from "./models/Layer"
 
-  import Titlebar from "./components/Titlebar/Titlebar.vue"
+  import SystemToolbar from "./system/Toolbar.vue"
+  import SystemFrame from "./system/Frame.vue"
+
+  import Actionbar from "./components/Actionbar/Actionbar.vue"
   import Toolbar from "./components/Toolbar/Toolbar.vue"
   import Editor from "./components/Editor/Editor.vue"
   import Sidebar from "./components/Sidebar/Sidebar.vue"
 
   @Component({
     components: {
-      Titlebar,
+      SystemToolbar,
+      SystemFrame,
+      Actionbar,
       Toolbar,
       Editor,
       Sidebar
@@ -39,6 +48,25 @@
       super()
 
       this.Project = new Project()
+      this.Project.DateCreated = new Date().toLocaleString()
+
+      Object.values([
+
+        new Layer({ Name: "Layer1" }),
+        new Layer({ Name: "Layer2" }),
+        new Layer({ Name: "Layer3" })
+        
+      ]).map(layer => {
+
+        this.$store.dispatch('AddNewLayer', layer)
+
+      })
+
+    }
+
+    get SystemTheme(): String {
+
+      return this.$store.state.Project.System.Theme
 
     }
 

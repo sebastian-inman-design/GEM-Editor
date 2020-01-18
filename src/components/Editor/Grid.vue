@@ -1,8 +1,8 @@
 <template>
-  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <svg class="app-editor-grid" width="100%" height="100%">
     <defs>
       <pattern id="grid" :width="GridSize" :height="GridSize" patternUnits="userSpaceOnUse">
-        <path :d="`M ${GridSize} 0 L 0 0 0 ${GridSize}`" fill="none" stroke="#CDCDCD" stroke-width="0.5"/>
+        <path :d="`M ${GridSize} 0 L 0 0 0 ${GridSize}`" fill="none" stroke="var(--editor-grid-color)" stroke-width="0.5" stroke-dasharray="1" />
       </pattern>
     </defs>
     <rect width="100%" height="100%" fill="url(#grid)"/>
@@ -15,16 +15,28 @@
   import store from "../../store"
 
   @Component
-
   export default class EditorGrid extends Vue {
 
     get GridSize(): Number {
 
         // Get the current layers.
-        return this.$store.state.Project.GridSize
+        return this.$store.state.Project.Settings.GridSize
 
     }
     
   }
 
 </script>
+
+<style lang="scss" scoped>
+.app-editor-grid {
+  height: calc(100% + 1px);
+  width: calc(100% + 1px);
+  pointer-events: none;
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  bottom: 0;
+  right: 0;
+}
+</style>

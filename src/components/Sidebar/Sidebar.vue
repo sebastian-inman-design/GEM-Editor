@@ -1,16 +1,24 @@
 <template>
-    <div class="app-sidebar control-module">
-        <div class="app-sidebar-handle"></div>
-
-        <SidebarPanel title="Layers">
-            <SidebarLayers />
-        </SidebarPanel>
+    <div class="app-sidebar">
         
-        <SidebarPanel title="Assets">
-            <SidebarAssets :assets="assets"/>
-        </SidebarPanel>
+        <div class="app-sidebar-handle" @mousedown="StartResize($event)"></div>
 
-        <input type="number" @input="UpdateGridSize($event)">
+        <SidebarPanel>
+
+            <SidebarTabs :tabs="['Navigator', 'Camera']">
+                <div slot="Navigator"/>
+                <div slot="Camera"/>
+            </SidebarTabs>
+
+            <SidebarTabs :tabs="['Layers']" startingTab="Layers">
+                <PanelLayers slot="Layers"/>
+            </SidebarTabs>
+
+            <SidebarTabs :tabs="['Properties']" startingTab="Properties">
+                <div slot="Properties"/>
+            </SidebarTabs>
+
+        </SidebarPanel>
 
     </div>
 </template>
@@ -18,33 +26,103 @@
 <script lang="ts">
 
 import { Component, Prop, Vue } from "vue-property-decorator"
+import store from "../../store"
 
-import "./Sidebar.scss"
 import SidebarPanel  from "./SidebarPanel.vue"
-import SidebarLayers from "./SidebarLayers.vue"
-import SidebarAssets from "./SidebarAssets.vue"
+import SidebarTabs from "./SidebarTabs.vue"
+
+import PanelLayers from "./Panels/Layers.vue"
 
 @Component({
 
     components: {
         SidebarPanel,
-        SidebarLayers,
-        SidebarAssets
+        SidebarTabs,
+        PanelLayers
     }
 
 })
 
 export default class Sidebar extends Vue {
-    
-    @Prop() private layers!: any
-    @Prop() private assets!: any
 
-    UpdateGridSize(event: any) {
+    private minWidth: Number = 260
+    private maxWidth: Number = 520
+    private Resizing: Boolean = false
 
-        this.$store.dispatch('UpdateGridSize', event.target.value)
+    get SidebarWidth(): Number {
+
+        return this.$store.state.Project.Settings.SidebarWidth
+
+    }
+
+    StartResize(event: any) {
+
+        // Start resizing.
+        this.Resizing = true
+
+        // Get the current sidebar width.
+        let width: any = this.SidebarWidth
+
+        // Get the starting mouse coords.
+        let startCoord: any = event.clientX
+
+        document.addEventListener('mousemove', (event: any) => {
+
+            if(this.Resizing) {
+
+                // Set the new sidebar width.
+                if(event.clientX > startCoord) { width -= (event.clientX - startCoord) }
+                if(event.clientX < startCoord) { width += (startCoord - event.clientX) }
+
+                // Limit the size of the sidebar.
+                if(width < this.minWidth) width = this.minWidth
+                if(width > this.maxWidth) width = this.maxWidth
+
+                // Reset the starting point.
+                startCoord = event.clientX
+
+                // Update the sidebar model.
+                this.UpdateSidebarWidth(width)
+
+            }
+
+        })
+
+        document.addEventListener('mouseup', (event: any) => {
+
+            // Stop resizing.
+            this.Resizing = false
+
+        })
+
+    }
+
+    UpdateSidebarWidth(width: number) {
+
+        document.documentElement.style.setProperty('--editor-sidebar-width', `${width}px`)
+        this.$store.commit('UpdateSidebarWidth', width)
 
     }
 
 }
 
 </script>
+
+<style lang="scss" scoped>
+.app-sidebar {
+  border-top: 1px solid var(--editor-border-color);
+  flex-direction: column;
+  position: relative;
+  grid-area: sidebar;
+  padding-left: 3px;
+  display: flex;
+  .app-sidebar-handle {
+    background-color: transparent;
+    position: absolute;
+    cursor: col-resize;
+    height: 100%;
+    width: 3px;
+    left: 0;
+  }
+}
+</style>

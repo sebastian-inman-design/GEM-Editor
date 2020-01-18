@@ -10,7 +10,8 @@ import { Component, Prop, Vue } from "vue-property-decorator"
 
 import store from "../../store"
 import Layer from "../../models/Layer"
-import EditorLayer from "./EditorLayer.vue"
+
+import EditorLayer from "./Layer.vue"
 
 @Component({
     components: {
@@ -33,7 +34,7 @@ export default class EditorLayers extends Vue {
     get Layers(): Layer[] {
 
         // Get the current layers.
-        return this.$store.state.Project.Layers
+        return this.$store.state.Project.Data.Layers
 
     }
 
@@ -41,13 +42,16 @@ export default class EditorLayers extends Vue {
 
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .app-editor-layers {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    top: 0;
-}
+  border: 1px dotted var(--editor-grid-color);
+  transform: translate3d(-50%, -50%, 0);
+  position: absolute;
+  left: 50%;
+  top: 50%;
 
+  min-height: 320px;
+  min-width: 354px;
+
+}
 </style>
