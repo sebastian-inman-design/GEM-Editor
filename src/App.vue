@@ -1,75 +1,112 @@
 <template>
-  <div id="app" :theme="SystemTheme">
-    <SystemToolbar/>
-    <SystemFrame>
-      <Actionbar/>
-      <Toolbar/>
-      <Editor/>
-      <Sidebar/>
-    </SystemFrame>
-  </div>
+  <router-view/>
 </template>
 
-<script lang="ts">
+<style lang="scss">
+:root {
 
-  import { Component, Vue } from "vue-property-decorator"
+  /** 
+   * Global Size Variables.
+   **/
 
-  import "./App.scss"
+  --editor-rulers-size: 20px;
+  --editor-sidebar-width: 260px;
+  --system-frame-padding: 24px;
+  --system-toolbar-title-font-size: 12px;
+  --system-font-family: "Poppins", sans-serif;
+  --system-font-size: 16px;
+  --system-toolbar-padding: 10px;
+  --editor-toolbar-width: 42px;
+  --editor-toolbar-padding: 7px;
+  --editor-toolbar-button-size: calc(var(--editor-toolbar-width) - calc(var(--editor-toolbar-padding) * 2));
+  --editor-toolbar-icon-size: 16px;
 
-  import store from "./store"
-  import Project from "./models/Project"
-  import Layer from "./models/Layer"
+  /**
+   * Dark Mode Color Variables.
+   **/
 
-  import SystemToolbar from "./system/Toolbar.vue"
-  import SystemFrame from "./system/Frame.vue"
+  --system-accent-color: #00b6ff;
+  --system-toolbar-background-01: #363636;
+  --system-toolbar-background-02: #2D2D2D;
+  --system-toolbar-background-gradient: linear-gradient(var(--system-toolbar-background-01), var(--system-toolbar-background-02));
+  --system-frame-color: #2D2D2D;
+  --system-background-color: #1F1F1F;
+  --system-toolbar-title-color: #E2E2E2;
+  --editor-grid-color: #636363;
+  --editor-border-color: #1C1C1C;
+  --editor-rulers-background: #343434;
+  --sidebar-tab-background-01: #2D2D2D;
+  --sidebar-tab-background-02: #272727;
+  --sidebar-tab-background-gradient: linear-gradient(var(--sidebar-tab-background-01), var(--sidebar-tab-background-02));
 
-  import Actionbar from "./components/Actionbar/Actionbar.vue"
-  import Toolbar from "./components/Toolbar/Toolbar.vue"
-  import Editor from "./components/Editor/Editor.vue"
-  import Sidebar from "./components/Sidebar/Sidebar.vue"
+}
 
-  @Component({
-    components: {
-      SystemToolbar,
-      SystemFrame,
-      Actionbar,
-      Toolbar,
-      Editor,
-      Sidebar
-    }
-  })
+*,
+*::before,
+*::after {
 
-  export default class App extends Vue {
+  letter-spacing: 0.365px;
+  box-sizing: border-box;
+  user-select: none;
+  outline: none;
 
-    private Project: Project
+}
 
-    constructor() {
+html, body {
 
-      super()
+  background-color: var(--system-frame-color);
+  overflow: hidden;
+  height: 100vw;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
 
-      this.Project = new Project()
-      this.Project.DateCreated = new Date().toLocaleString()
+}
 
-      Object.values([
+html {
 
-        new Layer({ Name: "Layer1" }),
-        new Layer({ Name: "Layer2" }),
-        new Layer({ Name: "Layer3" })
-        
-      ]).map(layer => {
+  font-family: var(--system-font-family);
+  font-size: var(--system-font-size);
 
-        this.$store.dispatch('AddNewLayer', layer)
+}
 
-      })
+[aria-hidden="true"]:not(svg) {
+  visibility: hidden !important;
+  display: none !important;
+}
 
-    }
+input, textarea {
 
-    get SystemTheme(): String {
+  user-select: all;
 
-      return this.$store.state.Project.System.Theme
+}
 
-    }
+#app {
+
+  flex-direction: column;
+  overflow: hidden;
+  position: fixed;
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  &[theme="light"] {
+
+    --system-accent-color: #00b6ff;
+    --system-toolbar-background-01: #E1E1E1;
+    --system-toolbar-background-02: #C9C9C9;
+    --system-toolbar-background-gradient: linear-gradient(var(--system-toolbar-background-01), var(--system-toolbar-background-02));
+    --system-frame-color: #C9C9C9;
+    --system-background-color: #E9E9E9;
+    --system-toolbar-title-color: #E2E2E2;
+    --editor-grid-color: #636363;
+    --editor-border-color: #AAAAAA;
+    --editor-rulers-background: #343434;
+    --sidebar-tab-background-01: #C9C9C9;
+    --sidebar-tab-background-02: #AAAAAA;
+    --sidebar-tab-background-gradient: linear-gradient(var(--sidebar-tab-background-01), var(--sidebar-tab-background-02));
 
   }
 
-</script>
+}
+</style>
