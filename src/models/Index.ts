@@ -1,10 +1,14 @@
-export default class ProjectModel {
+export default class IndexModel {
 
   // Project Info.
-  Title: String = "💎 Shades of Dusk & Dawn"
-  Filename: String = ""
-  DateCreated: any = undefined
-  DateModified: any = undefined
+  Project: any = {
+
+    Title: "💎 Shades of Dusk & Dawn",
+    Filename: "",
+    DateCreated: undefined,
+    DateModified: undefined
+
+  }
 
   // System Settings.
   System: any = {
@@ -26,10 +30,10 @@ export default class ProjectModel {
   // Project Data.
   Data: any = {
 
-    Maps:     [],
-    Assets:   [],
-    Layers:   [],
-    Entities: []
+    Maps:    [],
+    Assets:  [],
+    Layers:  [],
+    Objects: []
 
   }
 

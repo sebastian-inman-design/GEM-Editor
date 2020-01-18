@@ -20,7 +20,7 @@
     get GridSize(): Number {
 
         // Get the current layers.
-        return this.$store.state.Project.Settings.GridSize
+        return this.$store.state.Index.Settings.GridSize
 
     }
     

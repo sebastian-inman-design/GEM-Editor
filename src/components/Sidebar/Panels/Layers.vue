@@ -33,7 +33,7 @@ export default class PanelLayers extends Vue {
     get Layers(): Layer[] {
 
         // Get the current layers.
-        return this.$store.state.Project.Data.Layers
+        return this.$store.state.Index.Data.Layers
 
     }
 

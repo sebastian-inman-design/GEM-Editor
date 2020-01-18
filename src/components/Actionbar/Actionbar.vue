@@ -19,7 +19,7 @@ export default class Actionbar extends Vue {
     get ActiveTool(): Number {
 
         // Get the current layers.
-        return this.$store.state.Project.Settings.ActiveTool
+        return this.$store.state.Index.Settings.ActiveTool
 
     }
 

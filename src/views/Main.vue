@@ -15,8 +15,10 @@
   import { Component, Vue } from "vue-property-decorator"
 
   import store from "../store"
-  import Project from "../models/Project"
+  import Index from "../models/Index"
   import Layer from "../models/Layer"
+
+  import IndexDB from "../indexdb"
 
   import SystemToolbar from "../system/Toolbar.vue"
   import SystemFrame from "../system/Frame.vue"
@@ -39,32 +41,35 @@
 
   export default class Main extends Vue {
 
-    private Project: Project
+    private Index: Index
 
     constructor() {
 
       super()
 
-      this.Project = new Project()
-      this.Project.DateCreated = new Date().toLocaleString()
+      this.Index = new Index()
+      this.Index.Project.DateCreated = new Date().toLocaleString()
 
-      Object.values([
+      const db = new IndexDB("GEM")
+      db.Create(this.Index)
 
-        new Layer({ Name: "Layer1" }),
-        new Layer({ Name: "Layer2" }),
-        new Layer({ Name: "Layer3" })
+      // Object.values([
+
+      //   new Layer({ Name: "Layer1" }),
+      //   new Layer({ Name: "Layer2" }),
+      //   new Layer({ Name: "Layer3" })
         
-      ]).map(layer => {
+      // ]).map(layer => {
 
-        this.$store.dispatch('AddNewLayer', layer)
+      //   this.$store.dispatch('AddNewLayer', layer)
 
-      })
+      // })
 
     }
 
     get SystemTheme(): String {
 
-      return this.$store.state.Project.System.Theme
+      return this.$store.state.Index.System.Theme
 
     }
 

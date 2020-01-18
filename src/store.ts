@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import Project from './models/Project'
+import Index from './models/Index'
 import Layer from './models/Layer'
 
 Vue.use(Vuex)
@@ -10,30 +10,30 @@ export default new Vuex.Store({
 
     state: {
 
-        Project: new Project()
+        Index: new Index()
 
     },
 
     mutations: {
 
         RenameProject(state, title: String) {
-            state.Project.Title = title
+            state.Index.Project.Title = title
         },
 
         SetActiveTool(state, tool: String) {
-            state.Project.Settings.ActiveTool = tool
+            state.Index.Settings.ActiveTool = tool
         },
 
         AddNewLayer(state, layer: Layer) {
-            state.Project.Data.Layers.push(layer)
+            state.Index.Data.Layers.push(layer)
         },
 
         UpdateGridSize(state, size: Number) {
-            state.Project.Settings.GridSize = size
+            state.Index.Settings.GridSize = size
         },
 
         UpdateSidebarWidth(state, width: Number) {
-            state.Project.Settings.SidebarWidth = width
+            state.Index.Settings.SidebarWidth = width
         }
 
     },

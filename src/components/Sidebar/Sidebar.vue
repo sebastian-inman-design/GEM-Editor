@@ -51,7 +51,7 @@ export default class Sidebar extends Vue {
 
     get SidebarWidth(): Number {
 
-        return this.$store.state.Project.Settings.SidebarWidth
+        return this.$store.state.Index.Settings.SidebarWidth
 
     }
 
