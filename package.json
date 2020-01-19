@@ -10,22 +10,38 @@
   "private": true,
   "main": "electron.js",
   "build": {
-    "appId": "com.electron.gem-game-editor",
+    "appId": "com.electron.${name}",
     "productName": "GEM Game Editor",
-    "copyright": "Copyright © 2020 Sebastian Inman",
+    "copyright": "Copyright © 2020 ${author}",
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "files": [
+      "package.json",
+      "electron.js",
+      "scripts/",
+      "node_modules/",
+      "build/",
+      "!node_modules/.cache"
+    ],
     "mac": {
       "category": "public.app-category.games",
       "darkModeSupport": true,
       "icon": "icon.icns"
+    },
+    "win": {
+      "icon": "icon.ico"
     }
   },
   "scripts": {
     "start": "env NODE_ENV=dev electron .",
     "serve": "vue-cli-service serve --port 5000",
+    "dev": "npm run serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "pack": "npm run build && electron-builder --dir",
-    "dist": "npm run build && electron-builder",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder -mw",
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
