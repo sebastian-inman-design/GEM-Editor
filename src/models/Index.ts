@@ -24,6 +24,7 @@ export default class IndexModel {
 
     GridSize: 32,
     ActiveTool: "Brush",
+    ActiveMap: undefined,
     SidebarWidth: 260
 
   }
@@ -32,10 +33,9 @@ export default class IndexModel {
   // Project Data.
   Data: any = {
 
-    Maps:    [],
-    Assets:  [],
-    Layers:  [],
-    Objects: []
+    Maps:    {},
+    Assets:  {},
+    Objects: {}
 
   }
 

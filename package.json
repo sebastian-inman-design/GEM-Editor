@@ -22,6 +22,7 @@
     "vuex": "^3.1.2"
   },
   "devDependencies": {
+    "@types/uuid": "^3.4.6",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-plugin-pwa": "^4.1.2",
@@ -39,6 +40,7 @@
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.0",
     "typescript": "~3.5.3",
+    "uuidv4": "^6.0.1",
     "vue-svg-loader": "^0.15.0",
     "vue-template-compiler": "^2.6.10"
   }

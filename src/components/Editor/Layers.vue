@@ -1,6 +1,6 @@
 <template>
     <div class="app-editor-layers">
-        <EditorLayer v-for="layer of Layers" :key="layer.Name" :layer="layer.Name"/>
+        <EditorLayer v-for="layer of Layers" :key="layer.ID" :layer="layer"/>
     </div>
 </template>
 
@@ -44,14 +44,8 @@ export default class EditorLayers extends Vue {
 
 <style lang="scss" scoped>
 .app-editor-layers {
-  border: 1px dotted var(--editor-grid-color);
-  transform: translate3d(-50%, -50%, 0);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-
-  min-height: 320px;
-  min-width: 354px;
-
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
 </style>

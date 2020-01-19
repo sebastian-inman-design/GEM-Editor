@@ -16,6 +16,7 @@ app.on('ready', () => {
     center: true,
     frame: false,
     titleBarStyle: 'hiddenInset',
+    backgroundColor: '#2D2D2D',
     webPreferences: { nodeIntegration: true }
   }).loadURL(mainURL)
 
@@ -27,6 +28,7 @@ app.on('ready', () => {
     show: true,
     frame: false,
     titleBarStyle: 'hiddenInset',
+    backgroundColor: '#2D2D2D',
     webPreferences: { nodeIntegration: true }
   }).loadURL(settingsURL)
 

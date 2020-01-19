@@ -52,10 +52,6 @@ export default class Toolbar extends Vue {
     padding: 0;
     border: 0;
     margin: 0;
-    &:not([aria-selected="true"]):hover {
-      color: #D6D6D6;
-      cursor: pointer;
-    }
     &[aria-selected="true"] {
       background-color: var(--system-background-color);
       color: var(--system-accent-color);

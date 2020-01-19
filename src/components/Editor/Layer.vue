@@ -1,15 +1,29 @@
 <template>
-    <canvas class="app-editor-layer" layer="prop.layer"></canvas>
+    <canvas class="app-editor-layer" :layer="Layer.ID"></canvas>
 </template>
 
 <script lang="ts">
 
 import { Component, Prop, Vue } from "vue-property-decorator"
+import store from "../../store"
 
 @Component
 export default class EditorLayer extends Vue {
 
-    /** Silence is peachy. **/
+    @Prop() Layer!: any
+
+    constructor() {
+
+        super()
+
+    }
+
+    get GridSize(): Number {
+
+        // Get the current layers.
+        return this.$store.state.Index.Settings.GridSize
+
+    }
     
 }
 

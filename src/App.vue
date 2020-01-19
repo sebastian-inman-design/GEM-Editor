@@ -25,7 +25,7 @@
    * Dark Mode Color Variables.
    **/
 
-  --system-accent-color: #00b6ff;
+  --system-accent-color: #22a6f3;
   --system-toolbar-background-01: #363636;
   --system-toolbar-background-02: #2D2D2D;
   --system-toolbar-background-gradient: linear-gradient(var(--system-toolbar-background-01), var(--system-toolbar-background-02));
@@ -92,7 +92,7 @@ input, textarea {
 
   &[theme="light"] {
 
-    --system-accent-color: #00b6ff;
+    --system-accent-color: #22a6f3;
     --system-toolbar-background-01: #E1E1E1;
     --system-toolbar-background-02: #C9C9C9;
     --system-toolbar-background-gradient: linear-gradient(var(--system-toolbar-background-01), var(--system-toolbar-background-02));

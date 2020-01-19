@@ -66,9 +66,9 @@ export default class SidebarTabs extends Vue {
         text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.75);
         border-right: 1px solid var(--editor-border-color);
         border-left: 1px solid var(--editor-border-color);
+        color: var(--system-toolbar-title-color);
         border-bottom-color: #383838;
         background-color: #383838;
-        color: #FFFFFF;
       }
     }
   }

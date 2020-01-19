@@ -2,7 +2,7 @@
   <svg class="app-editor-grid" width="100%" height="100%">
     <defs>
       <pattern id="grid" :width="GridSize" :height="GridSize" patternUnits="userSpaceOnUse">
-        <path :d="`M ${GridSize} 0 L 0 0 0 ${GridSize}`" fill="none" stroke="var(--editor-grid-color)" stroke-width="0.5" stroke-dasharray="1" />
+        <path :d="`M ${GridSize} 0 L 0 0 0 ${GridSize}`" fill="none" stroke="var(--editor-grid-color)" stroke-width="1" stroke-dasharray="2" />
       </pattern>
     </defs>
     <rect width="100%" height="100%" fill="url(#grid)"/>
@@ -30,8 +30,6 @@
 
 <style lang="scss" scoped>
 .app-editor-grid {
-  height: calc(100% + 1px);
-  width: calc(100% + 1px);
   pointer-events: none;
   position: absolute;
   left: -1px;

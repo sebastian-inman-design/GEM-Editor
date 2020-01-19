@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="layer of Layers" :key="layer.Name" class="sidebar-layer">
+        <div v-for="(layer, uuid, index) of Layers" :key="index" class="sidebar-layer" :aria-selected="ActiveLayer === `${uuid}` ? true : false" @click="SetActiveLayer(uuid)">
             <div class="sidebar-layer-preview"/>
             <span class="sidebar-layer-title">{{layer.Name}}</span>
         </div>
@@ -14,10 +14,10 @@
 import { Component, Prop, Vue } from "vue-property-decorator"
 
 import store from "../../../store"
+import Map from "../../../models/Map"
 import Layer from "../../../models/Layer"
 
 @Component
-
 export default class PanelLayers extends Vue {
 
     private model: Layer
@@ -30,20 +30,43 @@ export default class PanelLayers extends Vue {
 
     }
 
+    get ActiveMap(): any {
+
+      return this.$store.state.Index.Settings.ActiveMap
+
+    }
+
     get Layers(): Layer[] {
 
-        // Get the current layers.
-        return this.$store.state.Index.Data.Layers
+        return this.ActiveMap ? this.$store.state.Index.Data.Maps[this.ActiveMap].Layers : {}
+
+    }
+
+    get ActiveLayer(): Layer[] {
+
+      return this.$store.state.Index.Data.Maps[this.ActiveMap].ActiveLayer
 
     }
 
     AddNewLayer() {
 
-        // Create the new layer.
-        this.$store.dispatch('AddNewLayer', this.model)
+      this.$store.dispatch('AddNewLayer', {
+        map: this.ActiveMap,
+        layer: this.model
+      })
 
-        // Reset the model.
-        this.model = new Layer()
+      this.SetActiveLayer(this.model.ID)
+
+      this.model = new Layer()
+
+    }
+
+    SetActiveLayer(uuid: any) {
+
+      this.$store.dispatch('SetActiveLayer', {
+        map: this.ActiveMap,
+        layer: uuid
+      })
 
     }
 
@@ -62,11 +85,13 @@ export default class PanelLayers extends Vue {
   padding-right: 20px;
   padding-left: 20px;
   margin-left: -20px;
-  margin-bottom: 3px;
+  padding-top: 3px;
   display: flex;
+  &[aria-selected="true"] {
+    background-color: var(--system-accent-color);
+  }
   &:first-of-type {
     border-top: 1px solid #222222;
-    padding-top: 3px;
   }
   &-preview {
     background-color: #232323;
