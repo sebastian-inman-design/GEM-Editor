@@ -26,11 +26,13 @@
       "!node_modules/.cache"
     ],
     "mac": {
+      "target": "zip",
       "category": "public.app-category.games",
       "darkModeSupport": true,
       "icon": "icon.icns"
     },
     "win": {
+      "target": "zip",
       "icon": "icon.ico"
     }
   },
