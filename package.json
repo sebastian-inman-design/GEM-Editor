@@ -1,13 +1,32 @@
 {
   "name": "gem-game-editor",
   "version": "1.0.1",
+  "description": "GEM Map Editor",
+  "author": {
+    "name": "Sebastian Inman",
+    "email": "sebastian@seedscs.com",
+    "url": "https://sebastianinman.me"
+  },
   "private": true,
   "main": "electron.js",
+  "build": {
+    "appId": "com.electron.gem-game-editor",
+    "productName": "GEM Game Editor",
+    "copyright": "Copyright © 2020 Sebastian Inman",
+    "mac": {
+      "category": "public.app-category.games",
+      "darkModeSupport": true,
+      "icon": "icon.icns"
+    }
+  },
   "scripts": {
     "start": "env NODE_ENV=dev electron .",
     "serve": "vue-cli-service serve --port 5000",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "pack": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder",
+    "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
@@ -33,6 +52,7 @@
     "@vue/eslint-config-prettier": "^5.0.0",
     "@vue/eslint-config-typescript": "^4.0.0",
     "electron": "^7.1.9",
+    "electron-builder": "^22.2.0",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",

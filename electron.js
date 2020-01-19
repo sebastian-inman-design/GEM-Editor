@@ -22,7 +22,7 @@ app.on('ready', () => {
 
   }else{
 
-    main.loadFile(path.join(__dirname, "dist/index.html"))
+    main.loadFile(path.join(__dirname, "build/index.html"))
 
   }
 
