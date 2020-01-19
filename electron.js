@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron')
+const path = require('path')
 
 app.on('ready', () => {
 
@@ -21,7 +22,7 @@ app.on('ready', () => {
 
   }else{
 
-    main.loadURL(`file://${__dirname}/dist/index.html`)
+    main.loadFile(path.join(__dirname, "dist/index.html"))
 
   }
 
