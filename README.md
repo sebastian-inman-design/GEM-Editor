@@ -1,4 +1,5 @@
-# 🍑 Peachy Game Editor
+![GEM Editor](https://raw.githubusercontent.com/sebastian-inman-design/peachy-game-editor/master/public/mstile-150x150.png)
+# GEM Editor
 
 ## Project setup
 ```
