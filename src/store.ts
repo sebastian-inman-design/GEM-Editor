@@ -51,6 +51,13 @@ export default new Vuex.Store({
 
         },
 
+        SetActiveSprite(state, index: String) {
+
+            state.Index.Settings.ActiveSprite = index
+            Storage.Update('Settings', state.Index.Settings)
+
+        },
+
         AddNewMap(state, map: Map) {
 
             state.Index.Data.Maps = {...state.Index.Data.Maps, ...{[map.ID]: map}}
@@ -151,6 +158,12 @@ export default new Vuex.Store({
         SetActiveAsset(context, uuid: String) {
             return new Promise((resolve, reject) => {
                 context.commit('SetActiveAsset', uuid)
+            })
+        },
+
+        SetActiveSprite(context, index: any) {
+            return new Promise((resolve, reject) => {
+                context.commit('SetActiveSprite', index)
             })
         },
 

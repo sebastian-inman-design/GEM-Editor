@@ -26,7 +26,8 @@ export default class IndexModel {
     SidebarWidth: 260,
     ActiveMap: false,
     ActiveTool: "Brush",
-    ActiveAsset: false
+    ActiveAsset: false,
+    ActiveSprite: false
 
   }
 

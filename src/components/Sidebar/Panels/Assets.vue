@@ -8,8 +8,13 @@
       </select>
     </div>
     <div class="panel-content">
-      <div class="asset-tiles" :style="`--asset-url: url('${Asset.Base64}')`">
-        <button v-for="(Tile, index) of Tiles" :key="index" :style="`background-position: ${Tile.x}px ${Tile.y}px`"></button>
+      <div class="asset-tiles" :style="`--asset-url: url('${Asset.Base64}'); --asset-size: ${Asset.Width}px ${Asset.Height}px`">
+        <button 
+          v-for="(Tile, index) of Tiles" 
+          :key="index" 
+          :style="`background-position: ${Tile.x}px ${Tile.y}px`"
+          :aria-selected="ActiveSprite == index ? true : false"
+          @click="SetActiveSprite(index)"></button>
       </div>
     </div>
     <div class="panel-footer">
@@ -71,10 +76,14 @@ export default class PanelAssets extends Vue {
 
                 for(let c = 0; c < cols; c++) {
 
-                  this.model.Tiles.push({
-                    x: (c * this.GridSize) * -1,
-                    y: (r * this.GridSize) * -1
-                  })
+                  let x: Number = (c * this.GridSize) * -1
+                  let y: Number = (r * this.GridSize) * -1
+
+                  if(this.SpriteHasData(image, x, y)) {
+
+                    this.model.Tiles.push({x, y})
+
+                  }
 
                 }
 
@@ -96,6 +105,39 @@ export default class PanelAssets extends Vue {
 
     }
 
+    SpriteHasData(image: any, x: Number, y: Number) {
+
+      // Create a temp canvas.
+      let canvas: any = document.createElement('canvas')
+      let context = canvas.getContext('2d')
+
+      // Size the canvas.
+      canvas.width = this.GridSize
+      canvas.height = this.GridSize
+
+      // Draw the sprite.
+      context.drawImage(image, x, y)
+
+      let score: any = 0
+
+      for(let xx = 0; xx < this.GridSize; xx++) {
+
+        for(let yy = 0; yy < this.GridSize; yy++) {
+          
+          let data: Array<[]> = context.getImageData(xx, yy, 1, 1).data
+          Object.keys(data).map((i: any) => score += data[i])
+
+        }
+
+      }
+
+      // Delete the temp canvas.
+      document.removeChild(canvas)
+
+      return score > 0
+
+    }
+
     get GridSize(): any {
 
       return this.$store.state.Index.Settings.GridSize
@@ -111,6 +153,12 @@ export default class PanelAssets extends Vue {
     get ActiveAsset(): any {
 
       return this.$store.state.Index.Settings.ActiveAsset
+
+    }
+
+    get ActiveSprite(): any {
+
+      return this.$store.state.Index.Settings.ActiveSprite
 
     }
 
@@ -142,6 +190,12 @@ export default class PanelAssets extends Vue {
 
     }
 
+    SetActiveSprite(index: any) {
+
+      this.$store.dispatch('SetActiveSprite', index)
+
+    }
+
 }
 
 </script>
@@ -154,6 +208,7 @@ export default class PanelAssets extends Vue {
   padding: 2px;
   button {
     border: 1px solid var(--editor-border-color);
+    background-size: var(--asset-size);
     background-image: var(--asset-url);
     background-color: transparent;
     background-repeat: no-repeat;
