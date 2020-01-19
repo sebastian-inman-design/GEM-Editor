@@ -45,10 +45,10 @@ export default class Toolbar extends Vue {
     font-size: var(--editor-toolbar-icon-size);
     height: var(--editor-toolbar-button-size);
     width: var(--editor-toolbar-button-size);
+    color: var(--inactive-icon-color);
     background-color: transparent;
     text-align: center;
     border-radius: 4px;
-    color: #5C5C5C;
     padding: 0;
     border: 0;
     margin: 0;

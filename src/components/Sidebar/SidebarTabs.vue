@@ -39,13 +39,16 @@ export default class SidebarTabs extends Vue {
 <style lang="scss" scoped>
 .sidebar-panel-tabs {
   border-bottom: 1px solid var(--editor-border-color);
+  flex-direction: column;
+  display: flex;
   .panel-tabs-nav {
     background: var(--sidebar-tab-background-gradient);
     margin-bottom: -1px;
-    padding-left: 20px;
+    padding-left: 23px;
     flex-direction: row;
     flex-wrap: nowrap;
     display: flex;
+    height: 24px;
     .panel-tab {
       border-bottom: 1px solid transparent;
       border-right: 1px solid transparent;
@@ -74,9 +77,9 @@ export default class SidebarTabs extends Vue {
   }
   .panel-tabs-content {
     border-top: 1px solid var(--editor-border-color);
+    flex: 1 0 auto;
     .panel-tab-content {
       background-color: #383838;
-      padding: 20px;
     }
   }
 }

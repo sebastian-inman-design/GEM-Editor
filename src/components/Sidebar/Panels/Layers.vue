@@ -1,11 +1,24 @@
 <template>
-    <div>
-        <div v-for="(layer, uuid, index) of Layers" :key="index" class="sidebar-layer" :aria-selected="ActiveLayer === `${uuid}` ? true : false" @click="SetActiveLayer(uuid)">
-            <div class="sidebar-layer-preview"/>
-            <span class="sidebar-layer-title">{{layer.Name}}</span>
+    <div class="panel panel-layers">
+      <div class="panel-header"></div>
+      <div class="panel-content">
+        <div class="layers">
+          <div v-for="(Layer, uuid, index) of Layers" :key="index" class="layer" :aria-selected="ActiveLayer === `${uuid}` ? true : false" @click="SetActiveLayer(uuid)">
+            <div class="layer-preview"/>
+            <span class="layer-title">{{Layer.Name}}</span>
+          </div>
         </div>
-        <input v-model="model.Name">
-        <button @click="AddNewLayer()">Add Layer</button>
+      </div>
+      <div class="panel-footer">
+        <div class="panel-layers-controls">
+          <button @click="AddNewLayer()">
+            <font-awesome-icon icon="file" />
+          </button>
+          <button>
+            <font-awesome-icon icon="folder" />
+          </button>
+        </div>
+      </div>
     </div>
 </template>
 
@@ -38,7 +51,7 @@ export default class PanelLayers extends Vue {
 
     get Layers(): Layer[] {
 
-        return this.ActiveMap ? this.$store.state.Index.Data.Maps[this.ActiveMap].Layers : {}
+      return this.ActiveMap ? this.$store.state.Index.Data.Maps[this.ActiveMap].Layers : {}
 
     }
 
@@ -75,23 +88,26 @@ export default class PanelLayers extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.sidebar-layer {
-  border-bottom: 1px solid #222222;
-  width: calc(100% + 40px);
+.panel-layers {
+  .layers {
+    flex-direction: column;
+    display: flex;
+  }
+  &-controls {
+    flex-direction: row;
+    display: flex;
+  }
+}
+.layer {
   align-items: center;
   flex-direction: row;
   padding-bottom: 3px;
-  margin-right: -20px;
   padding-right: 20px;
   padding-left: 20px;
-  margin-left: -20px;
   padding-top: 3px;
   display: flex;
   &[aria-selected="true"] {
     background-color: var(--system-accent-color);
-  }
-  &:first-of-type {
-    border-top: 1px solid #222222;
   }
   &-preview {
     background-color: #232323;

@@ -18,3 +18,39 @@ export default class SidebarPanel extends Vue {
 }
 
 </script>
+
+
+<style lang="scss">
+    .panel {
+        background-color: var(--sidebar-panel-background);
+        flex-direction: column;
+        position: relative;
+        display: flex;
+        &-header,
+        &-footer {
+            background-color: var(--sidebar-panel-header-footer);
+            align-items: center;
+            padding: 0 6px;
+            display: flex;
+            height: 32px;
+        }
+        &-header {
+            border-bottom: 1px solid #222222;
+        }
+        &-content {
+            overflow-x: hidden;
+            overflow-y: scroll;
+            max-height: 250px;
+            min-height: 100px;
+            flex: 0 1 auto;
+        }
+        &-footer {
+            border-top: 1px solid #222222;
+            button {
+                color: var(--inactive-icon-color);
+                background-color: transparent;
+                border: 0;
+            }
+        }
+    }
+</style>

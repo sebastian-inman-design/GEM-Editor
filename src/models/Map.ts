@@ -6,7 +6,7 @@ export default class Map {
   Name: String = ""
   Order: Number = 0
   Layers: any = {}
-  ActiveLayer: any = undefined
+  ActiveLayer: any = false
   Width: Number = 640
   Height: Number = 384
 

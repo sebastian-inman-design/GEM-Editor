@@ -1,7 +1,7 @@
 <template>
   <div id="app" :theme="SystemTheme">
     <SystemToolbar/>
-    <SystemFrame>
+    <SystemFrame :style="`--grid-size: ${GridSize}px`">
       <Actionbar/>
       <Toolbar/>
       <Editor/>
@@ -38,6 +38,18 @@
   })
 
   export default class Main extends Vue {
+
+    constructor() {
+
+      super()
+
+    }
+
+    get GridSize(): any {
+
+      return this.$store.state.Index.Settings.GridSize
+
+    }
 
     get SystemTheme(): String {
 

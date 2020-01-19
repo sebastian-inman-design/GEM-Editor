@@ -35,18 +35,17 @@ export default class Editor extends Vue {
 <style lang="scss" scoped>
 .app-editor {
   background-color: var(--system-background-color);
-  border: 1px solid var(--editor-border-color);
+  padding: var(--editor-rulers-size);
   position: relative;
   grid-area: editor;
-  overflow: hidden;
-  padding: 20px;
+  overflow: scroll;
   &-map {
     border: 1px dashed var(--editor-grid-color);
     transform: translate3d(-50%, -50%, 0);
     position: absolute;
     overflow: hidden;
-    height: 384px;
-    width: 640px;
+    height: 1280px;
+    width: 1280px;
     cursor: cell;
     z-index: 1;
     left: 50%;

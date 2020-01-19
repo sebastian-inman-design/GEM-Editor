@@ -4,20 +4,15 @@
         <div class="app-sidebar-handle" @mousedown="StartResize($event)"></div>
 
         <SidebarPanel>
-
-            <SidebarTabs :tabs="['Navigator', 'Camera']">
-                <div slot="Navigator"/>
-                <div slot="Camera"/>
-            </SidebarTabs>
-
             <SidebarTabs :tabs="['Layers']" startingTab="Layers">
                 <PanelLayers slot="Layers"/>
             </SidebarTabs>
+        </SidebarPanel>
 
-            <SidebarTabs :tabs="['Properties']" startingTab="Properties">
-                <div slot="Properties"/>
+        <SidebarPanel>
+            <SidebarTabs :tabs="['Tilesets', 'Objects']" startingTab="Tilesets">
+                <PanelAssets slot="Tilesets"/>
             </SidebarTabs>
-
         </SidebarPanel>
 
     </div>
@@ -32,13 +27,15 @@ import SidebarPanel  from "./SidebarPanel.vue"
 import SidebarTabs from "./SidebarTabs.vue"
 
 import PanelLayers from "./Panels/Layers.vue"
+import PanelAssets from "./Panels/Assets.vue"
 
 @Component({
 
     components: {
         SidebarPanel,
         SidebarTabs,
-        PanelLayers
+        PanelLayers,
+        PanelAssets
     }
 
 })
@@ -122,19 +119,19 @@ export default class Sidebar extends Vue {
 
 <style lang="scss" scoped>
 .app-sidebar {
-  border-top: 1px solid var(--editor-border-color);
-  flex-direction: column;
-  position: relative;
-  grid-area: sidebar;
-  padding-left: 3px;
-  display: flex;
-  .app-sidebar-handle {
-    background-color: transparent;
-    position: absolute;
-    cursor: col-resize;
-    height: 100%;
-    width: 3px;
-    left: 0;
-  }
+    border-top: 1px solid var(--editor-border-color);
+    flex-direction: column;
+    position: relative;
+    grid-area: sidebar;
+    padding-left: 3px;
+    display: flex;
+    .app-sidebar-handle {
+        background-color: transparent;
+        position: absolute;
+        cursor: col-resize;
+        height: 100%;
+        width: 3px;
+        left: 0;
+    }
 }
 </style>

@@ -1,11 +1,11 @@
 {
-  "name": "test-vue-project",
+  "name": "gem-game-editor",
   "version": "1.0.1",
   "private": true,
   "main": "electron.js",
   "scripts": {
     "start": "env NODE_ENV=dev electron .",
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --port 5000",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -15,7 +15,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.9",
     "core-js": "^3.4.4",
     "register-service-worker": "^1.6.2",
-    "vue": "^2.6.10",
+    "vue": "^2.6.11",
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.3.0",
     "vue-router": "^3.1.5",

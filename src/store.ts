@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import Index from './models/Index'
+import Asset from './models/Asset'
 import Map from './models/Map'
 import Layer from './models/Layer'
 
@@ -34,6 +35,22 @@ export default new Vuex.Store({
 
         },
 
+        AddNewAsset(state, asset: Asset) {
+
+            state.Index.Data.Assets = {...state.Index.Data.Assets, ...{[asset.ID]: asset}}
+
+            state.Index.Project.DateModified = new Date().toLocaleString()
+            Storage.Update('Data', state.Index.Data)
+
+        },
+
+        SetActiveAsset(state, uuid: String) {
+
+            state.Index.Settings.ActiveAsset = uuid
+            Storage.Update('Settings', state.Index.Settings)
+
+        },
+
         AddNewMap(state, map: Map) {
 
             state.Index.Data.Maps = {...state.Index.Data.Maps, ...{[map.ID]: map}}
@@ -51,11 +68,33 @@ export default new Vuex.Store({
 
         },
 
-        AddNewLayer(state, props: any) {
+        DeleteMap(state, uuid: any) {
 
-            state.Index.Data.Maps[props.map].Layers = {...state.Index.Data.Maps[props.map].Layers, ...{[props.layer.ID]: props.layer}}
+            // if(state.Index.Settings.ActiveMap == uuid) {
+
+            //     state.Index.Settings.ActiveMap = false
+
+            // }
 
             state.Index.Project.DateModified = new Date().toLocaleString()
+            Storage.Update('Settings', state.Index.Settings)
+            Storage.Update('Data', state.Index.Data)
+
+        },
+
+        AddNewLayer(state, props: any) {
+
+            // Auto increment the layer name.
+            let count = Object.keys(state.Index.Data.Maps[props.map].Layers).length + 1
+            props.layer.Name = `Layer ${count}`
+
+            // Push the layer into the map object.
+            state.Index.Data.Maps[props.map].Layers = {...state.Index.Data.Maps[props.map].Layers, ...{[props.layer.ID]: props.layer}}
+
+            // Update the modified timestamp.
+            state.Index.Project.DateModified = new Date().toLocaleString()
+
+            // Update localstorage data.
             Storage.Update('Data', state.Index.Data)
 
         },
@@ -102,6 +141,19 @@ export default new Vuex.Store({
             })
         },
 
+        AddNewAsset(context, asset: Asset) {
+            return new Promise((resolve, reject) => {
+                context.commit('AddNewAsset', asset)
+                resolve()
+            })
+        },
+
+        SetActiveAsset(context, uuid: String) {
+            return new Promise((resolve, reject) => {
+                context.commit('SetActiveAsset', uuid)
+            })
+        },
+
         AddNewMap(context, map: Map) {
             return new Promise((resolve, reject) => {
                 context.commit('AddNewMap', map)
@@ -112,6 +164,13 @@ export default new Vuex.Store({
         SetActiveMap(context, map: Map) {
             return new Promise((resolve, reject) => {
                 context.commit('SetActiveMap', map)
+                resolve()
+            })
+        },
+
+        DeleteMap(context, uuid: any) {
+            return new Promise((resolve, reject) => {
+                context.commit('DeleteMap', uuid)
                 resolve()
             })
         },

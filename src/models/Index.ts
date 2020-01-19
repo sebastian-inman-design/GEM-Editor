@@ -5,7 +5,7 @@ export default class IndexModel {
   // Project Info.
   Project: any = {
 
-    Title: "💎 Shades of Dusk & Dawn",
+    Title: "Shades of Dusk & Dawn",
     Filename: "",
     DateCreated: new Date().toLocaleString(),
     DateModified: undefined
@@ -23,9 +23,10 @@ export default class IndexModel {
   Settings: any = {
 
     GridSize: 32,
+    SidebarWidth: 260,
+    ActiveMap: false,
     ActiveTool: "Brush",
-    ActiveMap: undefined,
-    SidebarWidth: 260
+    ActiveAsset: false
 
   }
 

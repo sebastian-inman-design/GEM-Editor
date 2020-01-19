@@ -9,6 +9,7 @@
    * Global Size Variables.
    **/
 
+  --system-scrollbar-width: 14px;
   --editor-rulers-size: 20px;
   --editor-sidebar-width: 260px;
   --system-frame-padding: 24px;
@@ -20,12 +21,15 @@
   --editor-toolbar-padding: 7px;
   --editor-toolbar-button-size: calc(var(--editor-toolbar-width) - calc(var(--editor-toolbar-padding) * 2));
   --editor-toolbar-icon-size: 16px;
+  --editor-rulers-size: 24px;
 
   /**
    * Dark Mode Color Variables.
    **/
 
-  --system-accent-color: #22a6f3;
+  --system-scrollbar-background: #2D2D2D;
+  --system-scrollbar-handle: #4B4B4B;
+  --system-accent-color: #FFAD21;
   --system-toolbar-background-01: #363636;
   --system-toolbar-background-02: #2D2D2D;
   --system-toolbar-background-gradient: linear-gradient(var(--system-toolbar-background-01), var(--system-toolbar-background-02));
@@ -35,9 +39,15 @@
   --editor-grid-color: #636363;
   --editor-border-color: #1C1C1C;
   --editor-rulers-background: #343434;
+  --editor-rulers-dashes: #484848;
+
+  --inactive-icon-color: #989898;
+
   --sidebar-tab-background-01: #2D2D2D;
   --sidebar-tab-background-02: #272727;
   --sidebar-tab-background-gradient: linear-gradient(var(--sidebar-tab-background-01), var(--sidebar-tab-background-02));
+  --sidebar-panel-background: #292929;
+  --sidebar-panel-header-footer: #383838;
 
 }
 
@@ -50,6 +60,25 @@
   user-select: none;
   outline: none;
 
+}
+
+::-webkit-scrollbar {
+  width: var(--system-scrollbar-width);
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--system-scrollbar-background);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: var(--system-scrollbar-background);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--system-scrollbar-handle);
+    border: 3px solid transparent;
+    background-clip: content-box;
+    border-radius: 1000px;
 }
 
 html, body {
@@ -81,6 +110,19 @@ input, textarea {
 
 }
 
+select {
+  box-shadow: inset 0 1px 0 0 #565656;
+  background-color: #363636;
+  border: 1px solid #222222;
+  border-radius: 1px;
+  color: #797979;
+  appearance: none;
+  padding: 0 6px;
+  font-size: 10px;
+  height: 20px;
+  margin: 0;
+}
+
 #app {
 
   flex-direction: column;
@@ -92,7 +134,7 @@ input, textarea {
 
   &[theme="light"] {
 
-    --system-accent-color: #22a6f3;
+    --system-accent-color: #FFAD21;
     --system-toolbar-background-01: #E1E1E1;
     --system-toolbar-background-02: #C9C9C9;
     --system-toolbar-background-gradient: linear-gradient(var(--system-toolbar-background-01), var(--system-toolbar-background-02));

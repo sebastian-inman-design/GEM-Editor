@@ -1,13 +1,5 @@
 const { app, BrowserWindow } = require('electron')
 
-const mainURL = process.env.NODE_ENV === 'dev'
-  ? `http://localhost:8080/#/`
-  : `file://${__dirname}/public/index.html`
-
-const settingsURL = process.env.NODE_ENV === 'dev'
-  ? `http://localhost:8080/#/settings`
-  : `file://${__dirname}/public/settings.html`
-
 app.on('ready', () => {
 
   const main = new BrowserWindow({
@@ -17,20 +9,21 @@ app.on('ready', () => {
     frame: false,
     titleBarStyle: 'hiddenInset',
     backgroundColor: '#2D2D2D',
-    webPreferences: { nodeIntegration: true }
-  }).loadURL(mainURL)
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
 
-  const settings = new BrowserWindow({
-    width: 700,
-    height: 400,
-    parent: main,
-    modal: true,
-    show: true,
-    frame: false,
-    titleBarStyle: 'hiddenInset',
-    backgroundColor: '#2D2D2D',
-    webPreferences: { nodeIntegration: true }
-  }).loadURL(settingsURL)
+  if(process.env.NODE_ENV === 'dev') {
+
+    main.loadURL(`http://localhost:5000`)
+    main.webContents.openDevTools()
+
+  }else{
+
+    main.loadURL(`file://${__dirname}/dist/index.html`)
+
+  }
 
 })
 
