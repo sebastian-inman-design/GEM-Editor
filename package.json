@@ -26,13 +26,13 @@
       "!node_modules/.cache"
     ],
     "mac": {
-      "target": "zip",
+      "target": "dmg",
       "category": "public.app-category.games",
       "darkModeSupport": true,
       "icon": "icon.icns"
     },
     "win": {
-      "target": "zip",
+      "target": "portable",
       "icon": "icon.ico"
     }
   },
