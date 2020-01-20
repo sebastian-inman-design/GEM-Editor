@@ -1,14 +1,29 @@
 {
   "name": "gem-editor",
   "version": "1.0.1",
+  "homepage": "https://github.com/sebastian-inman-design/GEM-Editor",
   "description": "GEM Editor",
+  "copyright": "Copyright © 2020 Sebastian Inman",
+  "keywords": [
+    "electron",
+    "typescript",
+    "vue"
+  ],
   "author": {
     "name": "Sebastian Inman",
     "email": "sebastian@seedscs.com",
-    "url": "https://sebastianinman.me"
+    "url": "https://github.com/sebastian-inman-design"
+  },
+  "bugs": {
+    "url": "https://github.com/sebastian-inman-design/GEM-Editor/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sebastian-inman-design/GEM-Editor.git"
   },
   "private": true,
   "main": "electron.js",
+  "readmeFilename": "README.md",
   "build": {
     "appId": "com.electron.${name}",
     "productName": "GEM Editor",
