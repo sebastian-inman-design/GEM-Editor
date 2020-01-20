@@ -3,12 +3,13 @@ import { uuid } from 'uuidv4'
 export default class Map {
 
   ID: any = uuid()
-  Name: String = ""
+  Name: String = "Untitled Project"
+  Description: String = ""
   Order: Number = 0
   Layers: any = {}
   ActiveLayer: any = false
-  Width: Number = 640
-  Height: Number = 384
+  Columns: any = 15
+  Rows: any = 10
 
   constructor(props: any = {}) {
 

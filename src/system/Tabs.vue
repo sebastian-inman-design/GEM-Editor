@@ -65,24 +65,9 @@ export default class SystemTabs extends Vue {
 
   }
 
-  AddNewMap() {
-
-    this.model.Name = "Test Map"
-    this.$store.dispatch('AddNewMap', this.model)
-    this.SetActiveMap(this.model.ID)
-    this.model = new Map()
-
-  }
-
   SetActiveMap(uuid: any) {
 
     this.$store.dispatch('SetActiveMap', uuid)
-
-  }
-
-  DeleteMap(uuid: any) {
-
-    this.$store.dispatch('DeleteMap', uuid)
 
   }
 

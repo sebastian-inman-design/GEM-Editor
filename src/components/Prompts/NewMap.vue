@@ -4,12 +4,12 @@
       <legend>Basic Info</legend>
       <div class="field">
         <label class="full-width" data-text="Name:">
-          <input type="text" :value="Name">
+          <input type="text" v-model="model.Name">
         </label>
       </div>
       <div class="field">
         <label class="full-width" data-text="Description:">
-          <textarea></textarea>
+          <textarea v-model="model.Description"></textarea>
         </label>
       </div>
     </fieldset>
@@ -17,18 +17,17 @@
       <legend>Dimensions</legend>
       <div class="field">
         <label data-text="Grid Size:">
-          <input type="number" :value="GridSize" @input="UpdateGridSize($event)">
+          <input type="number" :value="GridSize">
         </label>
-        <small>{{ Width }}px by {{ Height }}px</small>
       </div>
       <div class="field">
         <label data-text="Columns:">
-          <input type="number" :value="Columns" @input="UpdateColumns($event)">
+          <input type="number" v-model="model.Columns">
         </label>
       </div>
       <div class="field">
         <label data-text="Rows:">
-          <input type="number" :value="Rows" @input="UpdateRows($event)">
+          <input type="number" v-model="model.Rows">
         </label>
        </div>
     </fieldset>
@@ -40,6 +39,7 @@
   import { Component, Prop, Vue } from "vue-property-decorator"
 
   import store from "../../store"
+  import Map from "../../models/Map"
   import Prompt from "./Prompt.vue"
 
   @Component({
@@ -50,34 +50,44 @@
 
   export default class NewMap extends Vue {
 
-    Name: any = "Untitled Map"
+    private model: Map
 
-    GridSize: any = 32
-    Columns: any = 15
-    Rows: any = 10
+    constructor() {
 
-    Width: any = this.GridSize * this.Columns
-    Height: any = this.GridSize * this.Rows
+      super()
 
-    UpdateGridSize(event: any) {
+      this.model = new Map()
 
-      this.GridSize = event.target.value
-      this.Width = this.GridSize * this.Columns
-      this.Height = this.GridSize * this.Rows
+      this.$root.$on('Callback', this.Callback)
 
     }
 
-    UpdateColumns(event: any) {
+    get GridSize(): Number {
 
-      this.Columns = event.target.value
-      this.Width = this.GridSize * this.Columns
+      return this.$store.state.Index.Settings.GridSize
 
     }
 
-    UpdateRows(event: any) {
+    Callback(event: any) {
 
-      this.Rows = event.target.value
-      this.Height = this.GridSize * this.Rows
+      this.AddNewMap()
+
+    }
+
+    AddNewMap() {
+
+      this.model.Columns = parseInt(this.model.Columns)
+      this.model.Rows = parseInt(this.model.Rows)
+
+      this.$store.dispatch('AddNewMap', this.model)
+      this.SetActiveMap(this.model.ID)
+      this.model = new Map()
+
+    }
+
+    SetActiveMap(uuid: any) {
+
+      this.$store.dispatch('SetActiveMap', uuid)
 
     }
 

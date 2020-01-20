@@ -7,7 +7,7 @@
     <div class="prompt-footer">
       <div class="prompt-controls">
         <button type="button" @click="Cancel">Cancel</button>
-        <button type="button">OK</button>
+        <button type="button" @click="Callback($event)">OK</button>
       </div>
     </div>
   </div>
@@ -35,7 +35,14 @@ export default class Prompt extends Vue {
     this.$store.dispatch('ShowPrompt', false)
 
   }
-    
+
+  Callback(event: any) {
+
+    this.$root.$emit('Callback', event)
+    this.$store.dispatch('ShowPrompt', false)
+
+  }
+
 }
 
 </script>
