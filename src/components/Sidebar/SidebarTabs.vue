@@ -53,12 +53,12 @@ export default class SidebarTabs extends Vue {
       border-bottom: 1px solid transparent;
       border-right: 1px solid transparent;
       border-left: 1px solid transparent;
+      color: var(--inactive-text-color);
       background-color: transparent;
       padding-right: 10px;
       padding-left: 10px;
       position: relative;
       line-height: 19px;
-      color: #6f6f6f;
       font-size: 10px;
       border: 0;
       &:not([aria-selected="true"]):hover {

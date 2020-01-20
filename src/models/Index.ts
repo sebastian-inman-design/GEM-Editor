@@ -2,10 +2,12 @@ import Storage from "../localStorage"
 
 export default class IndexModel {
 
+  Prompt: any = false
+
   // Project Info.
   Project: any = {
 
-    Title: "Shades of Dusk & Dawn",
+    Title: "GEM Editor",
     Filename: "",
     DateCreated: new Date().toLocaleString(),
     DateModified: undefined
@@ -14,8 +16,6 @@ export default class IndexModel {
 
   // System Settings.
   System: any = {
-
-    Theme: "dark"
 
   }
 
@@ -47,14 +47,18 @@ export default class IndexModel {
 
     Object.keys(self).map(Key => {
 
-      if(!Storage.Exists(Key)) {
+      if(['object'].includes(typeof(self[Key]))) {
 
-        Storage.Create(Key, self[Key])
+        if(!Storage.Exists(Key)) {
 
-      }else{
-
-        const Data: any = Storage.Read(Key)
-        self[Key] = JSON.parse(Data)
+          Storage.Create(Key, self[Key])
+  
+        }else{
+  
+          const Data: any = Storage.Read(Key)
+          self[Key] = JSON.parse(Data)
+  
+        }
 
       }
 

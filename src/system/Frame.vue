@@ -1,5 +1,5 @@
 <template>
-  <div class="system-frame">
+  <div class="system-frame" :aria-busy="Prompt !== false">
     <div class="system-content">
       <slot></slot>
     </div>
@@ -13,7 +13,11 @@ import { Component, Prop, Vue } from "vue-property-decorator"
 @Component
 export default class SystemFrame extends Vue {
 
-    /** Silence is peachy. */
+  get Prompt(): any {
+
+    return this.$store.state.Index.Prompt
+
+  }
 
 }
 
@@ -27,7 +31,6 @@ export default class SystemFrame extends Vue {
   height: 100%;
   width: 100%;
 }
-
 .system-content {
   grid-template-areas: "actionbar actionbar actionbar"
                        "toolbar editor sidebar";

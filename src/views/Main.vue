@@ -1,12 +1,15 @@
 <template>
-  <div id="app" :theme="SystemTheme">
+  <div id="app">
     <SystemToolbar/>
     <SystemFrame :style="`--grid-size: ${GridSize}px`">
       <Actionbar/>
       <Toolbar/>
+      <Rulers/>
       <Editor/>
       <Sidebar/>
     </SystemFrame>
+    <NewMap/>
+    <NewProject/>
   </div>
 </template>
 
@@ -21,8 +24,12 @@
   import SystemToolbar from "../system/Toolbar.vue"
   import SystemFrame from "../system/Frame.vue"
 
+  import NewMap from "../components/Prompts/NewMap.vue"
+  import NewProject from "../components/Prompts/NewProject.vue"
+
   import Actionbar from "../components/Actionbar/Actionbar.vue"
   import Toolbar from "../components/Toolbar/Toolbar.vue"
+  import Rulers from "../components/Editor/Rulers.vue"
   import Editor from "../components/Editor/Editor.vue"
   import Sidebar from "../components/Sidebar/Sidebar.vue"
 
@@ -30,8 +37,11 @@
     components: {
       SystemToolbar,
       SystemFrame,
+      NewMap,
+      NewProject,
       Actionbar,
       Toolbar,
+      Rulers,
       Editor,
       Sidebar
     }
@@ -39,21 +49,9 @@
 
   export default class Main extends Vue {
 
-    constructor() {
-
-      super()
-
-    }
-
     get GridSize(): any {
 
       return this.$store.state.Index.Settings.GridSize
-
-    }
-
-    get SystemTheme(): String {
-
-      return this.$store.state.Index.System.Theme
 
     }
 

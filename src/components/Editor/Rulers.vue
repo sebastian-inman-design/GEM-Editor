@@ -10,7 +10,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator"
 
 @Component
-export default class EditorRulers extends Vue {
+export default class Rulers extends Vue {
 
     /** Silence is peachy. */
 
@@ -20,13 +20,13 @@ export default class EditorRulers extends Vue {
 
 <style lang="scss" scoped>
   .app-editor-ruler {
+    bottom: var(--system-frame-padding);
+    left: var(--editor-toolbar-width);
+    top: var(--editor-toolbar-width);
     pointer-events: none;
     position: absolute;
     z-index: 5;
-    bottom: 0;
     right: 0;
-    left: 0;
-    top: 0;
     .editor-ruler {
       background-color: #343434;
       position: absolute;

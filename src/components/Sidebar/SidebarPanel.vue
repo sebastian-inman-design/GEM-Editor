@@ -29,10 +29,10 @@ export default class SidebarPanel extends Vue {
         &-header,
         &-footer {
             background-color: var(--sidebar-panel-header-footer);
+            min-height: var(--input-height);
             align-items: center;
-            padding: 0 6px;
             display: flex;
-            height: 32px;
+            padding: 6px;
         }
         &-header {
             border-bottom: 1px solid #222222;

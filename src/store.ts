@@ -20,6 +20,12 @@ export default new Vuex.Store({
 
     mutations: {
 
+        ShowPrompt(state, prompt: String) {
+
+            state.Index.Prompt = prompt
+
+        },
+
         RenameProject(state, title: String) {
 
             state.Index.Project.Title = title
@@ -133,6 +139,13 @@ export default new Vuex.Store({
     },
 
     actions: {
+
+        ShowPrompt(context, prompt: String) {
+            return new Promise((resolve, reject) => {
+                context.commit('ShowPrompt', prompt)
+                resolve()
+            })
+        },
 
         RenameProject(context, title: String) {
             return new Promise((resolve, reject) => {

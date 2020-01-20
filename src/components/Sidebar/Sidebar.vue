@@ -120,11 +120,13 @@ export default class Sidebar extends Vue {
 <style lang="scss" scoped>
 .app-sidebar {
     border-top: 1px solid var(--editor-border-color);
+    background-color: var(--system-frame-color);
     flex-direction: column;
     position: relative;
     grid-area: sidebar;
     padding-left: 3px;
     display: flex;
+    z-index: 10;
     .app-sidebar-handle {
         background-color: transparent;
         position: absolute;

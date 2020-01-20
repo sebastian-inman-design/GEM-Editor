@@ -131,9 +131,6 @@ export default class PanelAssets extends Vue {
 
       }
 
-      // Delete the temp canvas.
-      document.removeChild(canvas)
-
       return score > 0
 
     }

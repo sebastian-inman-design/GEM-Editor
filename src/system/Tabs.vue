@@ -21,7 +21,7 @@
         <span class="system-tab-name" @click="SetActiveMap(uuid)">{{map.Name}}</span>
       </button>
     </div>
-    <button class="system-new-tab" @click="AddNewMap()">
+    <button class="system-new-tab" @click="PromptNewMap()">
       <font-awesome-icon icon="plus" />
     </button>
   </div>
@@ -56,6 +56,12 @@ export default class SystemTabs extends Vue {
   get ActiveMap(): Map {
 
     return this.$store.state.Index.Settings.ActiveMap
+
+  }
+
+  PromptNewMap(prompt: String) {
+
+    this.$store.dispatch('ShowPrompt', 'New Map')
 
   }
 
