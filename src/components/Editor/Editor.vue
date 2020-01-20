@@ -26,7 +26,7 @@ export default class Editor extends Vue {
     get GridSize(): Number {
 
         // Get the current layers.
-        return this.$store.state.Index.Settings.GridSize
+        return this.$store.state.App.Settings.GridSize
 
     }
 

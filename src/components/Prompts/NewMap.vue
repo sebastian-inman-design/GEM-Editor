@@ -39,7 +39,7 @@
   import { Component, Prop, Vue } from "vue-property-decorator"
 
   import store from "../../store"
-  import Map from "../../models/Map"
+  import Map from "../../vuex/Map"
   import Prompt from "./Prompt.vue"
 
   @Component({
@@ -64,7 +64,7 @@
 
     get GridSize(): Number {
 
-      return this.$store.state.Index.Settings.GridSize
+      return this.$store.state.App.Settings.GridSize
 
     }
 

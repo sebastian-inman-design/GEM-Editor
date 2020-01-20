@@ -18,8 +18,8 @@
   import { Component, Vue } from "vue-property-decorator"
 
   import store from "../store"
-  import Index from "../models/Index"
-  import Layer from "../models/Layer"
+  import App from "../vuex/App"
+  import Layer from "../vuex/Layer"
 
   import SystemToolbar from "../system/Toolbar.vue"
   import SystemFrame from "../system/Frame.vue"
@@ -51,7 +51,7 @@
 
     get GridSize(): any {
 
-      return this.$store.state.Index.Settings.GridSize
+      return this.$store.state.App.Settings.GridSize
 
     }
 

@@ -29,7 +29,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator"
 
 import store from "../../../store"
-import Asset from "../../../models/Asset"
+import Asset from "../../../vuex/Asset"
 
 @Component
 export default class PanelAssets extends Vue {
@@ -137,31 +137,31 @@ export default class PanelAssets extends Vue {
 
     get GridSize(): any {
 
-      return this.$store.state.Index.Settings.GridSize
+      return this.$store.state.App.Settings.GridSize
 
     }
 
     get Assets(): Asset[] {
 
-      return this.ActiveAsset ? this.$store.state.Index.Data.Assets : {}
+      return this.ActiveAsset ? this.$store.state.App.Data.Assets : {}
 
     }
 
     get ActiveAsset(): any {
 
-      return this.$store.state.Index.Settings.ActiveAsset
+      return this.$store.state.App.Settings.ActiveAsset
 
     }
 
     get ActiveSprite(): any {
 
-      return this.$store.state.Index.Settings.ActiveSprite
+      return this.$store.state.App.Settings.ActiveSprite
 
     }
 
     get Asset(): any {
 
-      return this.ActiveAsset ? this.$store.state.Index.Data.Assets[this.ActiveAsset] : {}
+      return this.ActiveAsset ? this.$store.state.App.Data.Assets[this.ActiveAsset] : {}
 
     }
 

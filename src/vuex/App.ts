@@ -1,6 +1,6 @@
 import Storage from "../localStorage"
 
-export default class IndexModel {
+export default class App {
 
   Prompt: any = false
 
@@ -52,12 +52,12 @@ export default class IndexModel {
         if(!Storage.Exists(Key)) {
 
           Storage.Create(Key, self[Key])
-  
+
         }else{
-  
+
           const Data: any = Storage.Read(Key)
           self[Key] = JSON.parse(Data)
-  
+
         }
 
       }

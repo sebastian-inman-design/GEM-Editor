@@ -32,7 +32,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator"
 
 import store from "../store"
-import Map from "../models/Map"
+import Map from "../vuex/Map"
 
 @Component
 export default class SystemTabs extends Vue {
@@ -49,13 +49,13 @@ export default class SystemTabs extends Vue {
 
   get Maps(): Map {
 
-    return this.$store.state.Index.Data.Maps
+    return this.$store.state.App.Data.Maps
 
   }
 
   get ActiveMap(): Map {
 
-    return this.$store.state.Index.Settings.ActiveMap
+    return this.$store.state.App.Settings.ActiveMap
 
   }
 

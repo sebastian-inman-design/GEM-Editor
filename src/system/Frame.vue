@@ -15,7 +15,7 @@ export default class SystemFrame extends Vue {
 
   get Prompt(): any {
 
-    return this.$store.state.Index.Prompt
+    return this.$store.state.App.Prompt
 
   }
 

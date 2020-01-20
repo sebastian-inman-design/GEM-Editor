@@ -26,7 +26,7 @@ export default class Prompt extends Vue {
 
   get Prompt(): any {
 
-    return this.$store.state.Index.Prompt
+    return this.$store.state.App.Prompt
 
   }
 

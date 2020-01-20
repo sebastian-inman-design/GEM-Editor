@@ -27,8 +27,8 @@
 import { Component, Prop, Vue } from "vue-property-decorator"
 
 import store from "../../../store"
-import Map from "../../../models/Map"
-import Layer from "../../../models/Layer"
+import Map from "../../../vuex/Map"
+import Layer from "../../../vuex/Layer"
 
 @Component
 export default class PanelLayers extends Vue {
@@ -45,19 +45,19 @@ export default class PanelLayers extends Vue {
 
     get ActiveMap(): any {
 
-      return this.$store.state.Index.Settings.ActiveMap
+      return this.$store.state.App.Settings.ActiveMap
 
     }
 
     get Layers(): Layer[] {
 
-      return this.ActiveMap ? this.$store.state.Index.Data.Maps[this.ActiveMap].Layers : {}
+      return this.ActiveMap ? this.$store.state.App.Data.Maps[this.ActiveMap].Layers : {}
 
     }
 
     get ActiveLayer(): Layer[] {
 
-      return this.$store.state.Index.Data.Maps[this.ActiveMap].ActiveLayer
+      return this.$store.state.App.Data.Maps[this.ActiveMap].ActiveLayer
 
     }
 

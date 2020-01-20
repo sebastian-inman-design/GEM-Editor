@@ -9,7 +9,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator"
 
 import store from "../../store"
-import Layer from "../../models/Layer"
+import Layer from "../../vuex/Layer"
 
 import EditorLayer from "./Layer.vue"
 
@@ -34,7 +34,7 @@ export default class EditorLayers extends Vue {
     get Layers(): Layer[] {
 
         // Get the current layers.
-        return this.$store.state.Index.Data.Layers
+        return this.$store.state.App.Data.Layers
 
     }
 

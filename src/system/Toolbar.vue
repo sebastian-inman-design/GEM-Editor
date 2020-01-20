@@ -27,7 +27,7 @@ export default class SystemToolbar extends Vue {
   get ProjectTitle(): Number {
 
     // Get the current layers.
-    return this.$store.state.Index.Project.Title
+    return this.$store.state.App.Project.Title
 
   }
 

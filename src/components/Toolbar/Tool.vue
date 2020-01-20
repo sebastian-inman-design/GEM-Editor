@@ -22,7 +22,7 @@ export default class Tool extends Vue {
     get ActiveTool(): Number {
 
         // Get the current layers.
-        return this.$store.state.Index.Settings.ActiveTool
+        return this.$store.state.App.Settings.ActiveTool
 
     }
 

@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import Index from './models/Index'
-import Asset from './models/Asset'
-import Map from './models/Map'
-import Layer from './models/Layer'
+import App from './vuex/App'
+import Asset from './vuex/Asset'
+import Map from './vuex/Map'
+import Layer from './vuex/Layer'
 
 import Storage from "./localStorage"
 
@@ -14,7 +14,7 @@ export default new Vuex.Store({
 
     state: {
 
-        Index: new Index()
+        App: new App()
 
     },
 
@@ -22,117 +22,117 @@ export default new Vuex.Store({
 
         ShowPrompt(state, prompt: String) {
 
-            state.Index.Prompt = prompt
+            state.App.Prompt = prompt
 
         },
 
         RenameProject(state, title: String) {
 
-            state.Index.Project.Title = title
-            state.Index.Project.DateModified = new Date().toLocaleString()
-            Storage.Update('Project', state.Index.Project)
+            state.App.Project.Title = title
+            state.App.Project.DateModified = new Date().toLocaleString()
+            Storage.Update('Project', state.App.Project)
 
         },
 
         SetActiveTool(state, tool: String) {
 
-            state.Index.Settings.ActiveTool = tool
-            Storage.Update('Settings', state.Index.Settings)
+            state.App.Settings.ActiveTool = tool
+            Storage.Update('Settings', state.App.Settings)
 
         },
 
         AddNewAsset(state, asset: Asset) {
 
-            state.Index.Data.Assets = {...state.Index.Data.Assets, ...{[asset.ID]: asset}}
+            state.App.Data.Assets = {...state.App.Data.Assets, ...{[asset.ID]: asset}}
 
-            state.Index.Project.DateModified = new Date().toLocaleString()
-            Storage.Update('Data', state.Index.Data)
+            state.App.Project.DateModified = new Date().toLocaleString()
+            Storage.Update('Data', state.App.Data)
 
         },
 
         SetActiveAsset(state, uuid: String) {
 
-            state.Index.Settings.ActiveAsset = uuid
-            Storage.Update('Settings', state.Index.Settings)
+            state.App.Settings.ActiveAsset = uuid
+            Storage.Update('Settings', state.App.Settings)
 
         },
 
         SetActiveSprite(state, index: String) {
 
-            state.Index.Settings.ActiveSprite = index
-            Storage.Update('Settings', state.Index.Settings)
+            state.App.Settings.ActiveSprite = index
+            Storage.Update('Settings', state.App.Settings)
 
         },
 
         AddNewMap(state, map: Map) {
 
-            state.Index.Data.Maps = {...state.Index.Data.Maps, ...{[map.ID]: map}}
+            state.App.Data.Maps = {...state.App.Data.Maps, ...{[map.ID]: map}}
 
-            state.Index.Project.DateModified = new Date().toLocaleString()
-            Storage.Update('Data', state.Index.Data)
+            state.App.Project.DateModified = new Date().toLocaleString()
+            Storage.Update('Data', state.App.Data)
 
         },
 
         SetActiveMap(state, uuid: string) {
 
-            state.Index.Settings.ActiveMap = uuid
-            state.Index.Project.DateModified = new Date().toLocaleString()
-            Storage.Update('Settings', state.Index.Settings)
+            state.App.Settings.ActiveMap = uuid
+            state.App.Project.DateModified = new Date().toLocaleString()
+            Storage.Update('Settings', state.App.Settings)
 
         },
 
         DeleteMap(state, uuid: any) {
 
-            // if(state.Index.Settings.ActiveMap == uuid) {
+            // if(state.App.Settings.ActiveMap == uuid) {
 
-            //     state.Index.Settings.ActiveMap = false
+            //     state.App.Settings.ActiveMap = false
 
             // }
 
-            state.Index.Project.DateModified = new Date().toLocaleString()
-            Storage.Update('Settings', state.Index.Settings)
-            Storage.Update('Data', state.Index.Data)
+            state.App.Project.DateModified = new Date().toLocaleString()
+            Storage.Update('Settings', state.App.Settings)
+            Storage.Update('Data', state.App.Data)
 
         },
 
         AddNewLayer(state, props: any) {
 
             // Auto increment the layer name.
-            let count = Object.keys(state.Index.Data.Maps[props.map].Layers).length + 1
+            let count = Object.keys(state.App.Data.Maps[props.map].Layers).length + 1
             props.layer.Name = `Layer ${count}`
 
             // Push the layer into the map object.
-            state.Index.Data.Maps[props.map].Layers = {...state.Index.Data.Maps[props.map].Layers, ...{[props.layer.ID]: props.layer}}
+            state.App.Data.Maps[props.map].Layers = {...state.App.Data.Maps[props.map].Layers, ...{[props.layer.ID]: props.layer}}
 
             // Update the modified timestamp.
-            state.Index.Project.DateModified = new Date().toLocaleString()
+            state.App.Project.DateModified = new Date().toLocaleString()
 
             // Update localstorage data.
-            Storage.Update('Data', state.Index.Data)
+            Storage.Update('Data', state.App.Data)
 
         },
 
         SetActiveLayer(state, props: any) {
 
-            state.Index.Data.Maps[props.map] = {...state.Index.Data.Maps[props.map], ...{ActiveLayer: props.layer}}
+            state.App.Data.Maps[props.map] = {...state.App.Data.Maps[props.map], ...{ActiveLayer: props.layer}}
 
-            state.Index.Project.DateModified = new Date().toLocaleString()
-            Storage.Update('Settings', state.Index.Settings)
+            state.App.Project.DateModified = new Date().toLocaleString()
+            Storage.Update('Settings', state.App.Settings)
 
         },
 
         UpdateGridSize(state, size: Number) {
 
-            state.Index.Settings.GridSize = size
-            state.Index.Project.DateModified = new Date().toLocaleString()
-            Storage.Update('Settings', state.Index.Settings)
+            state.App.Settings.GridSize = size
+            state.App.Project.DateModified = new Date().toLocaleString()
+            Storage.Update('Settings', state.App.Settings)
 
         },
 
         UpdateSidebarWidth(state, width: Number) {
 
-            state.Index.Settings.SidebarWidth = width
-            Storage.Update('Settings', state.Index.Settings)
+            state.App.Settings.SidebarWidth = width
+            Storage.Update('Settings', state.App.Settings)
             
         }
 
