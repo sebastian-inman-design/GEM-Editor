@@ -1,25 +1,28 @@
 <template>
-    <div class="panel panel-layers">
-      <div class="panel-header"></div>
-      <div class="panel-content">
-        <div class="layers">
-          <div v-for="(Layer, uuid, index) of Layers" :key="index" class="layer" :aria-selected="ActiveLayer === `${uuid}` ? true : false" @click="SetActiveLayer(uuid)">
-            <div class="layer-preview"/>
-            <span class="layer-title">{{Layer.Name}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="panel-footer">
-        <div class="panel-layers-controls">
-          <button @click="AddNewLayer()">
-            <font-awesome-icon icon="file" />
+  <div class="panel panel-layers">
+    <div class="panel-header"></div>
+    <div class="panel-content">
+      <div class="layers">
+        <div v-for="(Layer, uuid, index) of Layers" :key="index" class="layer" :aria-selected="ActiveLayer === `${uuid}` ? true : false" @click="SetActiveLayer(uuid)">
+          <button @click="ToggleLayerVisibility(uuid)">
+            <font-awesome-icon :icon="Layer.Visible ? 'eye' : 'eye-slash'"/>
           </button>
-          <button>
-            <font-awesome-icon icon="folder" />
-          </button>
+          <div class="layer-preview"/>
+          <span class="layer-title">{{Layer.Name}}</span>
         </div>
       </div>
     </div>
+    <div class="panel-footer">
+      <div class="panel-layers-controls">
+        <button @click="AddNewLayer()">
+          <font-awesome-icon icon="file" />
+        </button>
+        <button>
+          <font-awesome-icon icon="folder" />
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -43,28 +46,53 @@ export default class PanelLayers extends Vue {
 
     }
 
-    get ActiveMap(): any {
+    get GridSize(): any {
+
+      return this.$store.state.App.Settings.GridSize
+
+    }
+
+    get MapUUID(): any {
 
       return this.$store.state.App.Settings.ActiveMap
 
     }
 
+    get ActiveMap(): any {
+
+      return this.$store.state.App.Data.Maps[this.MapUUID]
+
+    }
+
     get Layers(): Layer[] {
 
-      return this.ActiveMap ? this.$store.state.App.Data.Maps[this.ActiveMap].Layers : {}
+      return this.MapUUID ? this.$store.state.App.Data.Maps[this.MapUUID].Layers : {}
 
     }
 
     get ActiveLayer(): Layer[] {
 
-      return this.$store.state.App.Data.Maps[this.ActiveMap].ActiveLayer
+      return this.$store.state.App.Data.Maps[this.MapUUID].ActiveLayer
 
     }
 
     AddNewLayer() {
 
+      for(let row: any = 0; row < this.ActiveMap.Rows; row++) {
+
+        for(let col: any = 0; col < this.ActiveMap.Columns; col++) {
+
+          this.model.Tiles.push({
+            x: col * this.GridSize,
+            y: row * this.GridSize
+          })
+
+        }
+
+      }
+
       this.$store.dispatch('AddNewLayer', {
-        map: this.ActiveMap,
+        map: this.MapUUID,
         layer: this.model
       })
 
@@ -74,10 +102,22 @@ export default class PanelLayers extends Vue {
 
     }
 
+    ToggleLayerVisibility(uuid: any) {
+
+      let layer = this.Layers[uuid]
+      layer.Visible = !layer.Visible
+
+      this.$store.dispatch('ToggleLayerVisibility', {
+        map: this.MapUUID,
+        layer: layer
+      })
+
+    }
+
     SetActiveLayer(uuid: any) {
 
       this.$store.dispatch('SetActiveLayer', {
-        map: this.ActiveMap,
+        map: this.MapUUID,
         layer: uuid
       })
 
@@ -107,7 +147,7 @@ export default class PanelLayers extends Vue {
   padding-top: 3px;
   display: flex;
   &[aria-selected="true"] {
-    background-color: var(--system-accent-color);
+    background-color: var(--sidebar-panel-header-footer);
   }
   &-preview {
     background-color: #232323;

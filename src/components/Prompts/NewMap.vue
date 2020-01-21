@@ -62,7 +62,7 @@
 
     }
 
-    get GridSize(): Number {
+    get GridSize(): any {
 
       return this.$store.state.App.Settings.GridSize
 
@@ -78,6 +78,9 @@
 
       this.model.Columns = parseInt(this.model.Columns)
       this.model.Rows = parseInt(this.model.Rows)
+
+      this.model.Width = this.model.Columns * this.GridSize
+      this.model.Height = this.model.Rows * this.GridSize
 
       this.$store.dispatch('AddNewMap', this.model)
       this.SetActiveMap(this.model.ID)

@@ -9,6 +9,7 @@ export default class Asset {
   Size: Number = 0
   Width: Number = 0
   Height: Number = 0
+  Image: any = undefined
   Tiles: any = []
 
 }

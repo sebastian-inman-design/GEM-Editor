@@ -37,27 +37,10 @@ import Map from "../vuex/Map"
 @Component
 export default class SystemTabs extends Vue {
 
-  private model: Map
+  private model: Map = new Map()
 
-  constructor() {
-
-    super()
-
-    this.model = new Map()
-
-  }
-
-  get Maps(): Map {
-
-    return this.$store.state.App.Data.Maps
-
-  }
-
-  get ActiveMap(): Map {
-
-    return this.$store.state.App.Settings.ActiveMap
-
-  }
+  get Maps(): Map { return this.$store.state.App.Data.Maps }
+  get ActiveMap(): Map { return this.$store.state.App.Settings.ActiveMap }
 
   PromptNewMap(prompt: String) {
 
@@ -118,6 +101,7 @@ export default class SystemTabs extends Vue {
     border-right: 1px solid transparent;
     border-left: 1px solid transparent;
     border-top: 1px solid transparent;
+    color: var(--inactive-text-color);
     border-bottom: none;
     background-color: transparent;
     border-top-right-radius: 4px;
@@ -125,7 +109,6 @@ export default class SystemTabs extends Vue {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
-    color: #6f6f6f;
     font-weight: 600;
     margin: 0;
     &[aria-selected="true"] {
@@ -134,7 +117,7 @@ export default class SystemTabs extends Vue {
       border-left-color: var(--editor-border-color);
       border-top-color: var(--editor-border-color);
       background-color: var(--system-frame-color);
-      color: var(--system-accent-color);
+      color: var(--active-text-color);
     }
     &-name {
       line-height: var(--editor-toolbar-width);

@@ -13,11 +13,7 @@ import { Component, Prop, Vue } from "vue-property-decorator"
 @Component
 export default class SystemFrame extends Vue {
 
-  get Prompt(): any {
-
-    return this.$store.state.App.Prompt
-
-  }
+  get Prompt(): any { return this.$store.state.App.Prompt }
 
 }
 

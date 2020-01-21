@@ -45,7 +45,7 @@ export default class Toolbar extends Vue {
     font-size: var(--editor-toolbar-icon-size);
     height: var(--editor-toolbar-button-size);
     width: var(--editor-toolbar-button-size);
-    color: var(--inactive-icon-color);
+    color: var(--inactive-text-color);
     background-color: transparent;
     text-align: center;
     border-radius: 4px;
@@ -54,11 +54,13 @@ export default class Toolbar extends Vue {
     margin: 0;
     &[aria-selected="true"] {
       background-color: var(--system-background-color);
-      color: var(--system-accent-color);
+      color: var(--active-text-color);
     }
     svg {
       max-height: var(--editor-toolbar-icon-size);
       max-width: var(--editor-toolbar-icon-size);
+      height: var(--editor-toolbar-icon-size);
+      width: var(--editor-toolbar-icon-size);
     }
     + button {
       margin-top: var(--editor-toolbar-padding);

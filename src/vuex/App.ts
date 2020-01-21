@@ -24,6 +24,7 @@ export default class App {
 
     GridSize: 32,
     SidebarWidth: 260,
+    ShowGrid: true,
     ActiveMap: false,
     ActiveTool: "Brush",
     ActiveAsset: false,

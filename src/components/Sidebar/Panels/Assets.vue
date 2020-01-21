@@ -220,7 +220,7 @@ export default class PanelAssets extends Vue {
       width: 100%;
     }
     &[aria-selected="true"] {
-      box-shadow: 0 0 0 1px var(--system-accent-color);
+      box-shadow: 0 0 0 1px var(--inactive-text-color);
     }
   }
 }

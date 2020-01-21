@@ -5,7 +5,27 @@ import router from "./router"
 import store from "./store"
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBrush, faFillDrip, faMousePointer, faVectorSquare, faEraser, faShapes, faBolt, faLightbulb, faTrashAlt, faPlus, faTimes, faFile, faFolder } from '@fortawesome/free-solid-svg-icons'
+
+import { 
+  faBrush, 
+  faFillDrip, 
+  faMousePointer, 
+  faVectorSquare, 
+  faEraser, 
+  faShapes, 
+  faBolt, 
+  faLightbulb, 
+  faTrashAlt, 
+  faPlus, 
+  faTimes, 
+  faFile, 
+  faFolder,
+  faEye,
+  faEyeSlash,
+  faBorderAll,
+  faBorderNone
+} from '@fortawesome/free-solid-svg-icons'
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(
@@ -21,7 +41,11 @@ library.add(
   faPlus,
   faTimes,
   faFile,
-  faFolder
+  faFolder,
+  faEye,
+  faEyeSlash,
+  faBorderAll,
+  faBorderNone
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

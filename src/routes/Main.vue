@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <SystemToolbar/>
-    <SystemFrame :style="`--grid-size: ${GridSize}px`">
+    <SystemFrame :style="`--grid-size: ${GridSize}px;`">
       <Actionbar/>
       <Toolbar/>
       <Rulers/>

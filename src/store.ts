@@ -121,6 +121,19 @@ export default new Vuex.Store({
 
         },
 
+        ToggleLayerVisibility(state, props: any) {
+
+            // Push the layer into the map object.
+            state.App.Data.Maps[props.map].Layers = {...state.App.Data.Maps[props.map].Layers, ...{[props.layer.ID]: props.layer}}
+
+            // Update the modified timestamp.
+            state.App.Project.DateModified = new Date().toLocaleString()
+
+            // Update localstorage data.
+            Storage.Update('Data', state.App.Data)
+
+        },
+
         UpdateGridSize(state, size: Number) {
 
             state.App.Settings.GridSize = size
@@ -211,6 +224,13 @@ export default new Vuex.Store({
         SetActiveLayer(context, props: any) {
             return new Promise((resolve, reject) => {
                 context.commit('SetActiveLayer', props)
+                resolve()
+            })
+        },
+
+        ToggleLayerVisibility(context, props: any) {
+            return new Promise((resolve, reject) => {
+                context.commit('ToggleLayerVisibility', props)
                 resolve()
             })
         },

@@ -17,7 +17,7 @@
   --editor-toolbar-width: 42px;
   --editor-toolbar-padding: 7px;
   --editor-toolbar-button-size: calc(var(--editor-toolbar-width) - calc(var(--editor-toolbar-padding) * 2));
-  --editor-toolbar-icon-size: 16px;
+  --editor-toolbar-icon-size: 14px;
   --editor-rulers-size: 24px;
 
   /**
@@ -36,6 +36,10 @@
   --system-background-color: #1F1F1F;
   --system-toolbar-title-color: #E2E2E2;
 
+  --active-text-color: #E2E2E2;
+
+  --inactive-text-color: #6F6F6F;
+
   /** Fieldset Variables */
   --fieldset-background-color: #343434;
   --fieldset-border-color: #575757;
@@ -45,7 +49,7 @@
   --input-highlight-color: #494949;
   --input-shadow-color: #282828;
   --input-border-color: #222222;
-  --input-text-color: #E2E2E2;
+  --input-text-color: var(--active-text-color);
   --input-border-radius: 1px;
   --input-font-size: 9px;
   --input-padding: 8px;
@@ -53,9 +57,6 @@
 
   /** Select Variables */
   --select-background-color: #363636;
-
-  --inactive-icon-color: #989898;
-  --inactive-text-color: #6F6F6F;
 
   /** Editor Variables */
   --editor-grid-color: #2D2D2D;
