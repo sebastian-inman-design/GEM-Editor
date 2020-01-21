@@ -2,7 +2,7 @@ import Storage from "../localStorage"
 
 export default class App {
 
-  Prompt: any = false
+  Prompt: any = "Login"
 
   // Project Info.
   Project: any = {

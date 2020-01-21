@@ -1,5 +1,5 @@
 <template>
-  <div class="prompt" :style="`--prompt-width: ${width}px;`" :aria-hidden="Prompt != title">
+  <div v-if="Prompt === title" class="prompt" :style="`--prompt-width: ${width}px;`">
     <div class="prompt-title">{{ title }}</div>
     <div class="prompt-content">
       <slot></slot>

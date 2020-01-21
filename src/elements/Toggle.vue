@@ -18,7 +18,7 @@ export default class Toggle extends Vue {
     @Prop() name!:    String
     @Prop() label!:   String
     @Prop() checked!: Boolean
-    
+
 }
 
 </script>

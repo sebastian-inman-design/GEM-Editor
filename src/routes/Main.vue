@@ -10,6 +10,7 @@
     </SystemFrame>
     <NewMap/>
     <NewProject/>
+    <Login/>
   </div>
 </template>
 
@@ -26,6 +27,7 @@
 
   import NewMap from "../components/Prompts/NewMap.vue"
   import NewProject from "../components/Prompts/NewProject.vue"
+  import Login from "../components/Prompts/Login.vue"
 
   import Actionbar from "../components/Actionbar/Actionbar.vue"
   import Toolbar from "../components/Toolbar/Toolbar.vue"
@@ -39,6 +41,7 @@
       SystemFrame,
       NewMap,
       NewProject,
+      Login,
       Actionbar,
       Toolbar,
       Rulers,
