@@ -2,12 +2,12 @@
   <div v-if="Prompt === title" class="prompt" :style="`--prompt-width: ${width}px;`">
     <div class="prompt-title">{{ title }}</div>
     <div class="prompt-content">
-      <slot></slot>
+      <slot name="content"></slot>
     </div>
     <div class="prompt-footer">
       <div class="prompt-controls">
-        <button type="button" @click="Cancel">Cancel</button>
-        <button type="button" @click="Callback($event)">OK</button>
+        <button type="button" @click="$store.dispatch('ShowPrompt', false)">Cancel</button>
+        <slot name="controls"></slot>
       </div>
     </div>
   </div>
@@ -21,25 +21,11 @@ import { Component, Prop, Vue } from "vue-property-decorator"
 export default class Prompt extends Vue {
 
   @Prop() title!: String
-  @Prop() controls!: Array<[]>
   @Prop() width!: Number
 
   get Prompt(): any {
 
     return this.$store.state.App.Prompt
-
-  }
-
-  Cancel(prompt: String) {
-
-    this.$store.dispatch('ShowPrompt', false)
-
-  }
-
-  Callback(event: any) {
-
-    this.$root.$emit('Callback', event)
-    this.$store.dispatch('ShowPrompt', false)
 
   }
 
@@ -75,11 +61,20 @@ export default class Prompt extends Vue {
     z-index: 1;
   }
   &-title {
+    box-shadow: inset 1px 0 0 0 var(--prompt-border-color-inside),
+                inset -1px 0 0 0 var(--prompt-border-color-inside),
+                inset 0 1px 0 0 var(--prompt-border-color-inside);
+    background: var(--prompt-title-background-gradient);
     font-size: var(--system-toolbar-title-font-size);
     text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.75);
     color: var(--system-toolbar-title-color);
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    justify-content: center;
+    align-content: center;
     text-align: center;
     padding: 8px 16px;
+    display: flex;
   }
   &-content {
     padding: 8px 16px 0 16px;

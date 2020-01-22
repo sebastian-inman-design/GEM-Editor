@@ -1,37 +1,31 @@
 <template>
+
   <Prompt title="New Map" :width="470">
-    <fieldset>
-      <legend>Basic Info</legend>
-      <div class="field">
-        <label class="full-width" data-text="Name:">
+    <template slot="content">
+      <fieldset>
+        <legend>Map Info</legend>
+        <Field label="Name:" classes="full-width">
           <input type="text" v-model="model.Name">
-        </label>
-      </div>
-      <div class="field">
-        <label class="full-width" data-text="Description:">
+        </Field>
+        <Field label="Description:" classes="full-width">
           <textarea v-model="model.Description"></textarea>
-        </label>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend>Dimensions</legend>
-      <div class="field">
-        <label data-text="Grid Size:">
-          <input type="number" :value="GridSize">
-        </label>
-      </div>
-      <div class="field">
-        <label data-text="Columns:">
+        </Field>
+      </fieldset>
+      <fieldset>
+        <legend>Map Size</legend>
+        <Field label="Columns:">
           <input type="number" v-model="model.Columns">
-        </label>
-      </div>
-      <div class="field">
-        <label data-text="Rows:">
+        </Field>
+        <Field label="Rows:">
           <input type="number" v-model="model.Rows">
-        </label>
-       </div>
-    </fieldset>
+        </Field>
+      </fieldset>
+    </template>
+    <template slot="controls">
+      <button type="button" @click="AddNewMap()">OK</button>
+    </template>
   </Prompt>
+  
 </template>
 
 <script lang="ts">
@@ -40,37 +34,24 @@
 
   import store from "../../store"
   import Map from "../../vuex/Map"
+
   import Prompt from "./Prompt.vue"
+  import Field from "../../elements/Inputs/Field.vue"
 
   @Component({
     components: {
-      Prompt
+      Prompt,
+      Field
     }
   })
 
   export default class NewMap extends Vue {
 
-    private model: Map
-
-    constructor() {
-
-      super()
-
-      this.model = new Map()
-
-      this.$root.$on('Callback', this.Callback)
-
-    }
+    private model: Map = new Map()
 
     get GridSize(): any {
 
       return this.$store.state.App.Settings.GridSize
-
-    }
-
-    Callback(event: any) {
-
-      this.AddNewMap()
 
     }
 
@@ -83,6 +64,8 @@
       this.model.Height = this.model.Rows * this.GridSize
 
       this.$store.dispatch('AddNewMap', this.model)
+      this.$store.dispatch('ShowPrompt', false)
+
       this.SetActiveMap(this.model.ID)
       this.model = new Map()
 

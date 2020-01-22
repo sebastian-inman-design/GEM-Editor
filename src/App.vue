@@ -51,7 +51,7 @@
   --input-border-color: #222222;
   --input-text-color: var(--active-text-color);
   --input-border-radius: 1px;
-  --input-font-size: 9px;
+  --input-font-size: 10px;
   --input-padding: 8px;
   --input-height: 24px;
 
@@ -73,6 +73,9 @@
 
   /** Prompt Variables */
   --prompt-background-color: #2D2D2D;
+  --prompt-title-background-01: #363636;
+  --prompt-title-background-02: #2D2D2D;
+  --prompt-title-background-gradient: linear-gradient(var(--prompt-title-background-01), var(--prompt-title-background-02));
   --prompt-title-gradient: var(--system-toolbar-background-gradient);
   --prompt-border-color-outside: #010101;
   --prompt-border-color-inside: #575757;
@@ -223,6 +226,9 @@ input, textarea {
 
 input {
   width: 100%;
+  &[type=password] {
+    letter-spacing: 1.333px;
+  }
   &[type=number] {
     width: 48px;
   }
@@ -260,6 +266,25 @@ button[type] {
   + button {
     margin-left: 6px;
   }
+}
+
+.response-error,
+.response-success {
+  font-size: var(--input-font-size);
+  border-radius: 4px;
+  margin-top: 16px;
+  color: #FFFFFF;
+  padding: 12px;
+}
+
+.response-error {
+  border: 1px solid #D91E36;
+  background-color: #9E2B25;
+}
+
+.response-success {
+  border: 1px solid #4CB963;
+  background-color: #28582B;
 }
 
 #app {

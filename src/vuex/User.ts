@@ -2,9 +2,9 @@ import { uuid } from 'uuidv4'
 
 export default class User {
 
-  ID: any = uuid()
-  Email: String = ""
-  Password: String = ""
+  ID: any = ""
+  Email: any = ""
+  Password: any = ""
 
   constructor(props: any = {}) {
 

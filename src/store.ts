@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import App from './vuex/App'
+import User from './vuex/User'
 import Asset from './vuex/Asset'
 import Map from './vuex/Map'
 import Layer from './vuex/Layer'
@@ -19,6 +20,13 @@ export default new Vuex.Store({
     },
 
     mutations: {
+
+        UserLogin(state, user: any) {
+
+            state.App.User = user
+            Storage.Update('User', state.App.User)
+
+        },
 
         ShowPrompt(state, prompt: String) {
 
@@ -152,6 +160,13 @@ export default new Vuex.Store({
     },
 
     actions: {
+
+        UserLogin(context, user: any) {
+            return new Promise((resolve, reject) => {
+                context.commit('UserLogin', user)
+                resolve()
+            })
+        },
 
         ShowPrompt(context, prompt: String) {
             return new Promise((resolve, reject) => {

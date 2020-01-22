@@ -12,8 +12,9 @@ const createWindow = () => {
     titleBarStyle: 'hiddenInset',
     backgroundColor: '#2D2D2D',
     webPreferences: {
-      webSecurity: false,
-      nodeIntegration: true
+      webSecurity: true,
+      nodeIntegration: true,
+      nativeWindowOpen: true
     }
   })
 

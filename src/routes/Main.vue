@@ -1,6 +1,8 @@
 <template>
   <div id="app">
+
     <SystemToolbar/>
+    
     <SystemFrame :style="`--grid-size: ${GridSize}px;`">
       <Actionbar/>
       <Toolbar/>
@@ -8,9 +10,11 @@
       <Editor/>
       <Sidebar/>
     </SystemFrame>
+
+    <Login/>
     <NewMap/>
     <NewProject/>
-    <Login/>
+
   </div>
 </template>
 
@@ -25,9 +29,9 @@
   import SystemToolbar from "../system/Toolbar.vue"
   import SystemFrame from "../system/Frame.vue"
 
+  import Login from "../components/Prompts/Login.vue"
   import NewMap from "../components/Prompts/NewMap.vue"
   import NewProject from "../components/Prompts/NewProject.vue"
-  import Login from "../components/Prompts/Login.vue"
 
   import Actionbar from "../components/Actionbar/Actionbar.vue"
   import Toolbar from "../components/Toolbar/Toolbar.vue"
@@ -39,9 +43,9 @@
     components: {
       SystemToolbar,
       SystemFrame,
+      Login,
       NewMap,
       NewProject,
-      Login,
       Actionbar,
       Toolbar,
       Rulers,

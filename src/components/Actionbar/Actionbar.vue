@@ -4,12 +4,19 @@
     <button class="actionbar-button">
       <font-awesome-icon icon="border-all" />
     </button>
+    <button v-if="$store.state.App.User" type="button">
+      {{ $store.state.App.User.email }}
+    </button>
+    <button v-else type="button" @click="$store.dispatch('ShowPrompt', 'Login')">
+      Login
+    </button>
   </div>
 </template>
 
 <script lang="ts">
 
 import { Component, Prop, Vue } from "vue-property-decorator"
+import firebase from "firebase"
 
 import store from "../../store"
 
@@ -19,12 +26,12 @@ import store from "../../store"
 
 export default class Actionbar extends Vue {
 
-    get ActiveTool(): Number {
+  get ActiveTool(): Number {
 
-        // Get the current layers.
-        return this.$store.state.App.Settings.ActiveTool
+    // Get the current layers.
+    return this.$store.state.App.Settings.ActiveTool
 
-    }
+  }
 
 }
 
