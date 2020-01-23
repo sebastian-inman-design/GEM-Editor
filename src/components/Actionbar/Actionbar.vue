@@ -1,15 +1,18 @@
 <template>
   <div class="app-actionbar">
-    <span class="actionbar-active-tool">{{ ActiveTool }}</span>
-    <button class="actionbar-button">
-      <font-awesome-icon icon="border-all" />
-    </button>
-    <button v-if="$store.state.App.User" type="button">
-      {{ $store.state.App.User.email }}
-    </button>
-    <button v-else type="button" @click="$store.dispatch('ShowPrompt', 'Login')">
-      Login
-    </button>
+    <div class="actionbar-left">
+      <button class="actionbar-button">
+        <font-awesome-icon icon="border-all" />
+      </button>
+    </div>
+    <div class="actionbar-right">
+      <button v-if="$store.state.App.User" type="button">
+        {{ $store.state.App.User.email }}
+      </button>
+      <button v-else type="button" @click="$store.dispatch('ShowPrompt', 'Login')">
+        Login
+      </button>
+    </div>
   </div>
 </template>
 
@@ -39,15 +42,22 @@ export default class Actionbar extends Vue {
 
 <style lang="scss" scoped>
 .app-actionbar {
+  padding-left: var(--editor-toolbar-width);
   grid-area: actionbar;
   flex-direction: row;
   align-items: center;
   display: flex;
-  .actionbar-active-tool {
-    line-height: var(--editor-toolbar-width);
-    padding-left: 12px;
-    color: #FFFFFF;
-    font-size: 12px;
+  .actionbar-left {
+    display: inline-flex;
+    padding: 0 8px 0 0;
+    flex: 1 0 auto;
+  }
+  .actionbar-right {
+    flex: 0 1 var(--editor-sidebar-width);
+    width: var(--editor-sidebar-width);
+    justify-content: flex-end;
+    display: inline-flex;
+    padding: 0 8px;
   }
   .actionbar-button {
     box-shadow: inset 0 1px 0 0 #474747;

@@ -20,9 +20,7 @@ export default class App {
   }
 
   // User Settings.
-  User: any = {
-
-  }
+  User: any = false
 
   // Project Settings.
   Settings: any = {
