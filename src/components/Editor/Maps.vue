@@ -8,6 +8,7 @@
       :aria-hidden="ActiveMap !== `${uuid}`"
       @mousedown="StartEdit($event)" 
       @mouseup="StopEdit()"
+      @mouseleave="StopEdit()"
       @mousemove="EditLayer($event)"
       :style="`min-width: calc(var(--grid-size) * ${Map.Columns}); min-height: calc(var(--grid-size) * ${Map.Rows});`">
       <div class="map-layers" v-if="ActiveMap === uuid">
@@ -71,12 +72,16 @@ export default class Maps extends Vue {
 
   StartEdit(event: any) {
 
-    this.Editing = true
-    this.Canvas = document.getElementById(`layer-${this.Map.ActiveLayer}`)
-    this.CTX = this.Canvas.getContext('2d')
-    this.Image.src = this.Asset.Base64
+    if(this.Map.ActiveLayer) {
 
-    this.EditLayer(event)
+      this.Editing = true
+      this.Canvas = document.getElementById(`layer-${this.Map.ActiveLayer}`)
+      this.CTX = this.Canvas.getContext('2d')
+      this.Image.src = this.Asset.Base64
+
+      this.EditLayer(event)
+
+    }
 
   }
 
