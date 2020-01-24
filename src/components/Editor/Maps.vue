@@ -99,6 +99,10 @@ export default class Maps extends Vue {
           this.EraseTile(this.CurrentTile(event))
           break;
 
+        case "Collisions":
+          this.AddCollision(this.CurrentTile(event))
+          break;
+
       }
 
     }
@@ -120,6 +124,13 @@ export default class Maps extends Vue {
       this.GridSize, 
       this.GridSize
     )
+
+  }
+
+  AddCollision(tile: any) {
+
+    this.CTX.fillStyle = 'rgba(255, 0, 0, 0.25)'
+    this.CTX.fillRect(tile.x, tile.y, this.GridSize, this.GridSize)
 
   }
 
